@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres du Compte - Secrétaire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image" href="images/logo.png">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>CliniSys</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="fas fa-tachometer-alt"></i>Accueil</a>
+                </li>
+                <li>
+                    <a href="rdv.html"><i class="fas fa-calendar-alt"></i> Gestion des rendez-vous</a>
+                </li>
+                
+                <li>
+                    <a href="liste-patients.html"><i class="fas fa-users"></i> Liste des patients</a>
+                </li>
+                <li>
+                    <a href="imprimer-fiche.html"><i class="fas fa-file-pdf"></i> Imprimer fiche patient</a>
+                </li>
+                <li class="active">
+                    <a href="settings.html"><i class="fas fa-user-cog"></i> Paramètres du compte</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                   
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown me-3">
+                            <a class="btn btn-light position-relative" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    3
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Nouveau rendez-vous à 14h</a></li>
+                                <li><a class="dropdown-item" href="#">Fiche patient mise à jour</a></li>
+                                <li><a class="dropdown-item" href="#">Rappel: Réunion à 16h</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="dropdown">
+                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="assets/images/avatar.jpg" alt="Avatar" class="rounded-circle me-2" width="32" height="32">
+                                <span>Mme. Dubois</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="settings.html">Paramètres</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Settings Content -->
+            <div class="container-fluid">
+                <h1 class="mt-4 mb-4">Paramètres du Compte</h1>
+                
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Navigation</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">
+                                        <i class="fas fa-user me-2"></i> Profil
+                                    </button>
+                                    <button class="nav-link" id="v-pills-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-password" type="button" role="tab" aria-controls="v-pills-password" aria-selected="false">
+                                        <i class="fas fa-key me-2"></i> Mot de passe
+                                    </button>
+                                    <button class="nav-link" id="v-pills-notifications-tab" data-bs-toggle="pill" data-bs-target="#v-pills-notifications" type="button" role="tab" aria-controls="v-pills-notifications" aria-selected="false">
+                                        <i class="fas fa-bell me-2"></i> Notifications
+                                    </button>
+                                    <button class="nav-link" id="v-pills-appearance-tab" data-bs-toggle="pill" data-bs-target="#v-pills-appearance" type="button" role="tab" aria-controls="v-pills-appearance" aria-selected="false">
+                                        <i class="fas fa-palette me-2"></i> Apparence
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Informations du compte</h6>
+                            </div>
+                            <div class="card-body text-center">
+                                <img src="assets/images/avatar.jpg" alt="Avatar" class="rounded-circle mb-3" width="100" height="100">
+                                <h5>Mme. Dubois Claire</h5>
+                                <p class="text-muted">Secrétaire médicale</p>
+                                <p><i class="fas fa-envelope me-2"></i> claire.dubois@clinique-medicale.fr</p>
+                                <p><i class="fas fa-phone me-2"></i> 01 23 45 67 89</p>
+                                <p><i class="fas fa-clock me-2"></i> Membre depuis: 15/01/2022</p>
+                                <button class="btn btn-danger mt-3">
+                                    <i class="fas fa-sign-out-alt me-2"></i> Se déconnecter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-8">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <!-- Profile Settings -->
+                            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Modifier le profil</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="profileForm">
+                                            <div class="mb-3">
+                                                <label for="profilePicture" class="form-label">Photo de profil</label>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="assets/images/avatar.jpg" alt="Avatar" class="rounded-circle me-3" width="64" height="64">
+                                                    <div>
+                                                        <input class="form-control" type="file" id="profilePicture">
+                                                        <div class="form-text">Format recommandé: JPG, PNG. Max 2MB.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="firstName" class="form-label">Prénom</label>
+                                                    <input type="text" class="form-control" id="firstName" value="Claire">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="lastName" class="form-label">Nom</label>
+                                                    <input type="text" class="form-control" id="lastName" value="Dubois">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Adresse email</label>
+                                                <input type="email" class="form-control" id="email" value="claire.dubois@clinique-medicale.fr">
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="phone" class="form-label">Numéro de téléphone</label>
+                                                <input type="tel" class="form-control" id="phone" value="01 23 45 67 89">
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="jobTitle" class="form-label">Titre du poste</label>
+                                                <input type="text" class="form-control" id="jobTitle" value="Secrétaire médicale">
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="bio" class="form-label">Biographie</label>
+                                                <textarea class="form-control" id="bio" rows="3">Secrétaire médicale expérimentée avec plus de 5 ans d'expérience dans la gestion administrative d'établissements de santé.</textarea>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-2"></i> Enregistrer les modifications
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Password Settings -->
+                            <div class="tab-pane fade" id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Changer le mot de passe</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="passwordForm">
+                                            <div class="mb-3">
+                                                <label for="currentPassword" class="form-label">Mot de passe actuel</label>
+                                                <input type="password" class="form-control" id="currentPassword">
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="newPassword" class="form-label">Nouveau mot de passe</label>
+                                                <input type="password" class="form-control" id="newPassword">
+                                                <div class="form-text">Le mot de passe doit contenir au moins 8 caractères, incluant des lettres majuscules, minuscules, des chiffres et des caractères spéciaux.</div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="confirmPassword" class="form-label">Confirmer le nouveau mot de passe</label>
+                                                <input type="password" class="form-control" id="confirmPassword">
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-key me-2"></i> Mettre à jour le mot de passe
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Sécurité du compte</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3 form-check">
+                                            <input type="checkbox" class="form-check-input" id="twoFactorAuth">
+                                            <label class="form-check-label" for="twoFactorAuth">Activer l'authentification à deux facteurs</label>
+                                            <div class="form-text">Renforce la sécurité de votre compte en exigeant une vérification supplémentaire lors de la connexion.</div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label">Sessions actives</label>
+                                            <div class="list-group">
+                                                <div class="list-group-item">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h6 class="mb-1">Windows - Chrome</h6>
+                                                        <small class="text-success">Actuel</small>
+                                                    </div>
+                                                    <p class="mb-1">Paris, France - 12/05/2025 15:45</p>
+                                                </div>
+                                                <div class="list-group-item">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h6 class="mb-1">Android - Application mobile</h6>
+                                                        <button class="btn btn-sm btn-outline-danger">Déconnecter</button>
+                                                    </div>
+                                                    <p class="mb-1">Paris, France - 12/05/2025 10:30</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-end">
+                                            <button class="btn btn-danger">
+                                                <i class="fas fa-sign-out-alt me-2"></i> Déconnecter toutes les autres sessions
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Notifications Settings -->
+                            <div class="tab-pane fade" id="v-pills-notifications" role="tabpanel" aria-labelledby="v-pills-notifications-tab">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Préférences de notifications</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="notificationsForm">
+                                            <h6 class="mb-3">Notifications par email</h6>
+                                            
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" id="emailNewAppointment" checked>
+                                                <label class="form-check-label" for="emailNewAppointment">Nouveaux rendez-vous</label>
+                                            </div>
+                                            
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" id="emailCancelledAppointment" checked>
+                                                <label class="form-check-label" for="emailCancelledAppointment">Rendez-vous annulés</label>
+                                            </div>
+                                            
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" id="emailNewPatient" checked>
+                                                <label class="form-check-label" for="emailNewPatient">Nouveaux patients enregistrés</label>
+                                            </div>
+                                            
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" id="emailReminders">
+                                                <label class="form-check-label" for="emailReminders">Rappels quotidiens</label>
+                                            </div>
+                                            
+                                            <hr>
+                                            
+                                            <h6 class="mb-3">Notifications dans l'application</h6>
+                                            
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" id="appNewAppointment" checked>
+                                                <label class="form-check-label" for="appNewAppointment">Nouveaux rendez-vous</label>
+                                            </div>
+                                            
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" id="appCancelledAppointment" checked>
+                                                <label class="form-check-label" for="appCancelledAppointment">Rendez-vous annulés</label>
+                                            </div>
+                                            
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" id="appNewPatient" checked>
+                                                <label class="form-check-label" for="appNewPatient">Nouveaux patients enregistrés</label>
+                                            </div>
+                                            
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" id="appReminders" checked>
+                                                <label class="form-check-label" for="appReminders">Rappels quotidiens</label>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-2"></i> Enregistrer les préférences
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Appearance Settings -->
+                            <div class="tab-pane fade" id="v-pills-appearance" role="tabpanel" aria-labelledby="v-pills-appearance-tab">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Préférences d'apparence</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="appearanceForm">
+                                            <div class="mb-4">
+                                                <label class="form-label">Thème</label>
+                                                <div class="d-flex gap-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="themeOptions" id="lightTheme" checked>
+                                                        <label class="form-check-label" for="lightTheme">
+                                                            Clair
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="themeOptions" id="darkTheme">
+                                                        <label class="form-check-label" for="darkTheme">
+                                                            Sombre
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="themeOptions" id="systemTheme">
+                                                        <label class="form-check-label" for="systemTheme">
+                                                            Système
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-4">
+                                                <label class="form-label">Couleur d'accent</label>
+                                                <div class="d-flex gap-2">
+                                                    <div class="color-option bg-primary active" data-color="primary"></div>
+                                                    <div class="color-option bg-success" data-color="success"></div>
+                                                    <div class="color-option bg-info" data-color="info"></div>
+                                                    <div class="color-option bg-warning" data-color="warning"></div>
+                                                    <div class="color-option bg-danger" data-color="danger"></div>
+                                                    <div class="color-option bg-secondary" data-color="secondary"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-4">
+                                                <label class="form-label">Taille de police</label>
+                                                <div class="d-flex gap-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="fontSizeOptions" id="smallFont">
+                                                        <label class="form-check-label" for="smallFont">
+                                                            Petite
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="fontSizeOptions" id="mediumFont" checked>
+                                                        <label class="form-check-label" for="mediumFont">
+                                                            Moyenne
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="fontSizeOptions" id="largeFont">
+                                                        <label class="form-check-label" for="largeFont">
+                                                            Grande
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-4">
+                                                <label class="form-label">Disposition de la barre latérale</label>
+                                                <div class="d-flex gap-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="sidebarOptions" id="expandedSidebar" checked>
+                                                        <label class="form-check-label" for="expandedSidebar">
+                                                            Étendue
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="sidebarOptions" id="collapsedSidebar">
+                                                        <label class="form-check-label" for="collapsedSidebar">
+                                                            Réduite
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-2"></i> Enregistrer les préférences
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

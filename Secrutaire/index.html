@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Secrétaire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image" href="images/logo.png">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>CliniSys</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                </li>
+                <li>
+                    <a href="rdv.html"><i class="fas fa-calendar-alt"></i> Gestion des rendez-vous</a>
+                </li>
+                <li>
+                    <a href="liste-patients.html"><i class="fas fa-users"></i> Liste des patients</a>
+                </li>
+                <li>
+                    <a href="imprimer-fiche.html"><i class="fas fa-file-pdf"></i> Imprimer fiche patient</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="fas fa-user-cog"></i> Paramètres du compte</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown me-3">
+                            <a class="btn btn-light position-relative" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    3
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Nouveau rendez-vous à 14h</a></li>
+                                <li><a class="dropdown-item" href="#">Fiche patient mise à jour</a></li>
+                                <li><a class="dropdown-item" href="#">Rappel: Réunion à 16h</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="dropdown">
+                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="assets/images/avatar.jpg" alt="Avatar" class="rounded-circle me-2" width="32" height="32">
+                                <span>Mme. Dubois</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="settings.html">Paramètres</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page d'accueil -->
+            <div class="container-fluid dashboard-content">
+                <div class="welcome-message">
+                    <h2>Bonjour Mme. Dubois</h2>
+                </div>
+                
+                <div class="row">
+                    <!-- Rendez-vous aujourd'hui -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Rendez-vous aujourd'hui</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar-check fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patients enregistrés -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Patients enregistrés</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">215</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-user-injured fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fiches imprimées ce mois -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            Fiches imprimées ce mois</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">45</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Appointments -->
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Rendez-vous à venir</h6>
+                                <a href="rdv.html" class="btn btn-sm btn-primary">Voir tous</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Patient</th>
+                                                <th>Date</th>
+                                                <th>Heure</th>
+                                                <th>Médecin</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Martin, Jean</td>
+                                                <td>12/05/2025</td>
+                                                <td>14:30</td>
+                                                <td>Dr. Lefèvre</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-sm btn-info me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dupont, Marie</td>
+                                                <td>12/05/2025</td>
+                                                <td>15:00</td>
+                                                <td>Dr. Moreau</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-sm btn-info me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bernard, Sophie</td>
+                                                <td>12/05/2025</td>
+                                                <td>16:15</td>
+                                                <td>Dr. Lefèvre</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-sm btn-info me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Petit, Thomas</td>
+                                                <td>13/05/2025</td>
+                                                <td>09:00</td>
+                                                <td>Dr. Moreau</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-sm btn-info me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Patients -->
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Patients récents</h6>
+                                <a href="liste-patients.html" class="btn btn-sm btn-primary">Voir tous</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Date de naissance</th>
+                                                <th>Téléphone</th>
+                                                <th>Médecin référent</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Dupont, Marie</td>
+                                                <td>15/03/1985</td>
+                                                <td>06 12 34 56 78</td>
+                                                <td>Dr. Moreau</td>
+                                                <td>
+                                                    <a href="modifier-patient.html" class="btn btn-sm btn-info me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="imprimer-fiche.html" class="btn btn-sm btn-primary"><i class="fas fa-file-pdf"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Martin, Jean</td>
+                                                <td>22/07/1976</td>
+                                                <td>06 98 76 54 32</td>
+                                                <td>Dr. Lefèvre</td>
+                                                <td>
+                                                    <a href="modifier-patient.html" class="btn btn-sm btn-info me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="imprimer-fiche.html" class="btn btn-sm btn-primary"><i class="fas fa-file-pdf"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bernard, Sophie</td>
+                                                <td>10/11/1990</td>
+                                                <td>06 45 67 89 12</td>
+                                                <td>Dr. Lefèvre</td>
+                                                <td>
+                                                    <a href="modifier-patient.html" class="btn btn-sm btn-info me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="imprimer-fiche.html" class="btn btn-sm btn-primary"><i class="fas fa-file-pdf"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Petit, Thomas</td>
+                                                <td>05/09/1982</td>
+                                                <td>06 23 45 67 89</td>
+                                                <td>Dr. Moreau</td>
+                                                <td>
+                                                    <a href="modifier-patient.html" class="btn btn-sm btn-info me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="imprimer-fiche.html" class="btn btn-sm btn-primary"><i class="fas fa-file-pdf"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

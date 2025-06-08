@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs | Administration Clinique</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image" href="images/logo.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Admin </h3>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Accueil</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="users.html">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Gestion des utilisateurs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="backup.html">
+                            <i class="fas fa-database"></i>
+                            <span>Sauvegarde du système</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="history.html">
+                            <i class="fas fa-history"></i>
+                            <span>Historique des actions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Paramètres du compte</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation Bar -->
+            <div class="topbar">
+                <div class="user-menu">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">
+                            <img src="assets/images/avatar.png" alt="Avatar">
+                            <span>M. Mohamed</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="settings.html"><i class="fas fa-user-cog"></i> Profil</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Paramètres</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Users Management Content -->
+            <div class="dashboard">
+                <div class="welcome-message">
+                    <h2>Gestion des Utilisateurs</h2>
+                    <p>Gérez les comptes utilisateurs, les rôles et les permissions.</p>
+                </div>
+                
+                <!-- Users Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="search-container">
+                            <input type="text" id="searchUsers" placeholder="Rechercher un utilisateur...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="table-filter">
+                            <select id="roleFilter">
+                                <option value="all">Tous les rôles</option>
+                                <option value="Médecin">Médecin</option>
+                                <option value="Secrétaire">Secrétaire</option>
+                                <option value="Patient">Patient</option>
+                            </select>
+                            <select id="statusFilter">
+                                <option value="all">Tous les statuts</option>
+                                <option value="Actif">Actif</option>
+                                <option value="Suspendu">Suspendu</option>
+                            </select>
+                            <button class="btn btn-primary modal-btn" data-modal="addUserModal">
+                                <i class="fas fa-user-plus"></i> Ajouter un utilisateur
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <table class="data-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Rôle</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Table content will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+          
+            
+        </div>
+    </div>
+    
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ajouter un nouvel utilisateur</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="addUserForm">
+                <div class="form-group">
+                    <label for="userName">Nom complet</label>
+                    <input type="text" id="userName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="userRole">Rôle</label>
+                    <select id="userRole" class="form-control" required>
+                        <option value="">Sélectionner un rôle</option>
+                        <option value="Médecin">Médecin</option>
+                        <option value="Secrétaire">Secrétaire</option>
+                        <option value="Patient">Patient</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Mot de passe</label>
+                    <input type="password" id="userPassword" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="userConfirmPassword">Confirmer le mot de passe</label>
+                    <input type="password" id="userConfirmPassword" class="form-control" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Modifier l'utilisateur</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="editUserForm">
+                <input type="hidden" id="editUserId">
+                <div class="form-group">
+                    <label for="editUserName">Nom complet</label>
+                    <input type="text" id="editUserName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="editUserEmail">Email</label>
+                    <input type="email" id="editUserEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="editUserRole">Rôle</label>
+                    <select id="editUserRole" class="form-control" required>
+                        <option value="Médecin">Médecin</option>
+                        <option value="Secrétaire">Secrétaire</option>
+                        <option value="Patient">Patient</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editUserPassword">Nouveau mot de passe (laisser vide pour ne pas changer)</label>
+                    <input type="password" id="editUserPassword" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/users.js"></script>
+</body>
+</html>

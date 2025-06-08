@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Rendez-vous - Secrétaire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image" href="images/logo.png">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>CliniSys</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                </li>
+                <li class="active">
+                    <a href="rdv.html"><i class="fas fa-calendar-alt"></i> Gestion des rendez-vous</a>
+                </li>
+                <li>
+                    <a href="liste-patients.html"><i class="fas fa-users"></i> Liste des patients</a>
+                </li>
+                <li>
+                    <a href="imprimer-fiche.html"><i class="fas fa-file-pdf"></i> Imprimer fiche patient</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="fas fa-user-cog"></i> Paramètres du compte</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown me-3">
+                            <a class="btn btn-light position-relative" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    3
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Nouveau rendez-vous à 14h</a></li>
+                                <li><a class="dropdown-item" href="#">Fiche patient mise à jour</a></li>
+                                <li><a class="dropdown-item" href="#">Rappel: Réunion à 16h</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="dropdown">
+                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="assets/images/avatar.jpg" alt="Avatar" class="rounded-circle me-2" width="32" height="32">
+                                <span>Mme. Dubois</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="settings.html">Paramètres</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Appointment Management Content -->
+            <div class="container-fluid">
+                <h1 class="mt-4 mb-4">Gestion des Rendez-vous</h1>
+                
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Liste des rendez-vous</h6>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAppointmentModal">
+                            <i class="fas fa-calendar-plus"></i> Ajouter un rendez-vous
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    <input type="text" class="form-control datepicker" placeholder="Filtrer par date">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder="Filtrer par patient">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                                    <select class="form-select">
+                                        <option value="">Tous les médecins</option>
+                                        <option value="1">Dr. Lefèvre</option>
+                                        <option value="2">Dr. Moreau</option>
+                                        <option value="3">Dr. Petit</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-filter"></i></span>
+                                    <select class="form-select">
+                                        <option value="">Tous les statuts</option>
+                                        <option value="confirmed">Confirmé</option>
+                                        <option value="pending">En attente</option>
+                                        <option value="cancelled">Annulé</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Patient</th>
+                                        <th>Date</th>
+                                        <th>Heure</th>
+                                        <th>Médecin</th>
+                                        <th>Statut</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Martin, Jean</td>
+                                        <td>12/05/2025</td>
+                                        <td>14:30</td>
+                                        <td>Dr. Lefèvre</td>
+                                        <td><span class="badge bg-success">Confirmé</span></td>
+                                        <td class="text-center">
+                                            <div class="action-buttons">
+                                                <button class="btn-icon edit-btn" data-bs-toggle="modal" data-bs-target="#editAppointmentModal" title="Modifier le rendez-vous"><i class="fas fa-edit"></i></button>
+                                                <button class="btn-icon info-btn" title="Détails du patient"><i class="fas fa-info-circle"></i></button>
+                                                <button class="btn-icon delete-btn" data-bs-toggle="modal" data-bs-target="#cancelAppointmentModal" title="Annuler le rendez-vous"><i class="fas fa-times-circle"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dupont, Marie</td>
+                                        <td>12/05/2025</td>
+                                        <td>15:00</td>
+                                        <td>Dr. Moreau</td>
+                                        <td><span class="badge bg-success">Confirmé</span></td>
+                                        <td class="text-center">
+                                            <div class="action-buttons">
+                                                <button class="btn-icon edit-btn" data-bs-toggle="modal" data-bs-target="#editAppointmentModal" title="Modifier le rendez-vous"><i class="fas fa-edit"></i></button>
+                                                <button class="btn-icon info-btn" title="Détails du patient"><i class="fas fa-info-circle"></i></button>
+                                                <button class="btn-icon delete-btn" data-bs-toggle="modal" data-bs-target="#cancelAppointmentModal" title="Annuler le rendez-vous"><i class="fas fa-times-circle"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bernard, Sophie</td>
+                                        <td>12/05/2025</td>
+                                        <td>16:15</td>
+                                        <td>Dr. Lefèvre</td>
+                                        <td><span class="badge bg-warning text-dark">En attente</span></td>
+                                        <td class="text-center">
+                                            <div class="action-buttons">
+                                                <button class="btn-icon edit-btn" data-bs-toggle="modal" data-bs-target="#editAppointmentModal" title="Modifier le rendez-vous"><i class="fas fa-edit"></i></button>
+                                                <button class="btn-icon info-btn" title="Détails du patient"><i class="fas fa-info-circle"></i></button>
+                                                <button class="btn-icon delete-btn" data-bs-toggle="modal" data-bs-target="#cancelAppointmentModal" title="Annuler le rendez-vous"><i class="fas fa-times-circle"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Petit, Thomas</td>
+                                        <td>13/05/2025</td>
+                                        <td>09:00</td>
+                                        <td>Dr. Moreau</td>
+                                        <td><span class="badge bg-success">Confirmé</span></td>
+                                        <td class="text-center">
+                                            <div class="action-buttons">
+                                                <button class="btn-icon edit-btn" data-bs-toggle="modal" data-bs-target="#editAppointmentModal" title="Modifier le rendez-vous"><i class="fas fa-edit"></i></button>
+                                                <button class="btn-icon info-btn" title="Détails du patient"><i class="fas fa-info-circle"></i></button>
+                                                <button class="btn-icon delete-btn" data-bs-toggle="modal" data-bs-target="#cancelAppointmentModal" title="Annuler le rendez-vous"><i class="fas fa-times-circle"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Leroy, Émilie</td>
+                                        <td>13/05/2025</td>
+                                        <td>10:30</td>
+                                        <td>Dr. Petit</td>
+                                        <td><span class="badge bg-danger">Annulé</span></td>
+                                        <td class="text-center">
+                                            <div class="action-buttons">
+                                                <button class="btn-icon edit-btn" data-bs-toggle="modal" data-bs-target="#editAppointmentModal" title="Modifier le rendez-vous"><i class="fas fa-edit"></i></button>
+                                                <button class="btn-icon info-btn" title="Détails du patient"><i class="fas fa-info-circle"></i></button>
+                                                <button class="btn-icon delete-btn" data-bs-toggle="modal" data-bs-target="#cancelAppointmentModal" disabled title="Annuler le rendez-vous"><i class="fas fa-times-circle"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div>
+                                <span>Affichage de 1 à 5 sur 24 entrées</span>
+                            </div>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Appointment Modal -->
+    <div class="modal fade" id="addAppointmentModal" tabindex="-1" aria-labelledby="addAppointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAppointmentModalLabel">Ajouter un rendez-vous</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="patientSelect" class="form-label">Patient</label>
+                                <select class="form-select" id="patientSelect">
+                                    <option value="" selected disabled>Sélectionner un patient</option>
+                                    <option value="1">Martin, Jean</option>
+                                    <option value="2">Dupont, Marie</option>
+                                    <option value="3">Bernard, Sophie</option>
+                                    <option value="4">Petit, Thomas</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="doctorSelect" class="form-label">Médecin</label>
+                                <select class="form-select" id="doctorSelect">
+                                    <option value="" selected disabled>Sélectionner un médecin</option>
+                                    <option value="1">Dr. Lefèvre</option>
+                                    <option value="2">Dr. Moreau</option>
+                                    <option value="3">Dr. Petit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="appointmentDate" class="form-label">Date</label>
+                                <input type="text" class="form-control datepicker" id="appointmentDate">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="appointmentTime" class="form-label">Heure</label>
+                                <input type="text" class="form-control timepicker" id="appointmentTime">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentReason" class="form-label">Motif du rendez-vous</label>
+                            <textarea class="form-control" id="appointmentReason" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentStatus" class="form-label">Statut</label>
+                            <select class="form-select" id="appointmentStatus">
+                                <option value="confirmed">Confirmé</option>
+                                <option value="pending" selected>En attente</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Appointment Modal -->
+    <div class="modal fade" id="editAppointmentModal" tabindex="-1" aria-labelledby="editAppointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editAppointmentModalLabel">Modifier un rendez-vous</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="editPatientSelect" class="form-label">Patient</label>
+                                <select class="form-select" id="editPatientSelect">
+                                    <option value="1" selected>Martin, Jean</option>
+                                    <option value="2">Dupont, Marie</option>
+                                    <option value="3">Bernard, Sophie</option>
+                                    <option value="4">Petit, Thomas</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="editDoctorSelect" class="form-label">Médecin</label>
+                                <select class="form-select" id="editDoctorSelect">
+                                    <option value="1" selected>Dr. Lefèvre</option>
+                                    <option value="2">Dr. Moreau</option>
+                                    <option value="3">Dr. Petit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="editAppointmentDate" class="form-label">Date</label>
+                                <input type="text" class="form-control datepicker" id="editAppointmentDate" value="12/05/2025">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="editAppointmentTime" class="form-label">Heure</label>
+                                <input type="text" class="form-control timepicker" id="editAppointmentTime" value="14:30">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editAppointmentReason" class="form-label">Motif du rendez-vous</label>
+                            <textarea class="form-control" id="editAppointmentReason" rows="3">Consultation de routine</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editAppointmentStatus" class="form-label">Statut</label>
+                            <select class="form-select" id="editAppointmentStatus">
+                                <option value="confirmed" selected>Confirmé</option>
+                                <option value="pending">En attente</option>
+                                <option value="cancelled">Annulé</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary">Enregistrer les modifications</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Appointment Modal -->
+    <div class="modal fade" id="cancelAppointmentModal" tabindex="-1" aria-labelledby="cancelAppointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelAppointmentModalLabel">Annuler le rendez-vous</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Êtes-vous sûr de vouloir annuler le rendez-vous de <strong>Martin, Jean</strong> le <strong>12/05/2025</strong> à <strong>14:30</strong> avec <strong>Dr. Lefèvre</strong>?</p>
+                    <div class="mb-3">
+                        <label for="cancellationReason" class="form-label">Motif d'annulation</label>
+                        <textarea class="form-control" id="cancellationReason" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-danger">Confirmer l'annulation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/main.js"></script>
+    <script src="js/rdv.js"></script>
+</body>
+</html>

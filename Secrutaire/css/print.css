@@ -1,0 +1,118 @@
+/* Print-specific styles for Secretary Dashboard */
+
+@media print {
+    /* Hide navigation elements */
+    #sidebar, 
+    .navbar,
+    .btn,
+    .dropdown,
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Reset body and content styles */
+    body {
+        background-color: white;
+        font-size: 12pt;
+        color: black;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #content {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    
+    /* Remove card styling for print */
+    .card {
+        border: none;
+        box-shadow: none;
+    }
+    
+    .card-header {
+        background-color: white;
+        border-bottom: 1px solid #000;
+    }
+    
+    /* Patient record print styling */
+    .patient-record {
+        padding: 0;
+        border: none;
+    }
+    
+    .record-header {
+        border-bottom: 2px solid #000;
+    }
+    
+    .clinic-info h2 {
+        color: #000;
+    }
+    
+    .record-title h3 {
+        color: #000;
+    }
+    
+    .patient-info-section h4,
+    .medical-info-section h4,
+    .emergency-contact-section h4,
+    .recent-visits-section h4,
+    .upcoming-appointments-section h4 {
+        color: #000;
+        font-weight: bold;
+    }
+    
+    /* Table styling for print */
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    .table th,
+    .table td {
+        border: 1px solid #000;
+    }
+    
+    .table thead th {
+        background-color: #f0f0f0;
+    }
+    
+    /* Page breaks */
+    .patient-info-section,
+    .medical-info-section,
+    .emergency-contact-section,
+    .recent-visits-section,
+    .upcoming-appointments-section {
+        page-break-inside: avoid;
+    }
+    
+    /* Footer */
+    .record-footer {
+        margin-top: 20px;
+        border-top: 1px solid #000;
+        font-size: 10pt;
+        color: #666;
+    }
+    
+    /* Links */
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    /* Hide URL and link info */
+    a:after {
+        content: "";
+    }
+    
+    /* Avoid page breaks inside important elements */
+    h1, h2, h3, h4, h5, h6, img, table {
+        page-break-inside: avoid;
+    }
+    
+    /* Force page breaks where needed */
+    .page-break-after {
+        page-break-after: always;
+    }
+}

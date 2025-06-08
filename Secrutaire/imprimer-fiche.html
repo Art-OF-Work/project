@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprimer Fiche Patient - Secrétaire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link rel="icon" type="image" href="images/logo.png">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>CliniSys</h3> 
+                        </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                </li>
+                <li>
+                    <a href="rdv.html"><i class="fas fa-calendar-alt"></i> Gestion des rendez-vous</a>
+                </li>
+                <li>
+                    <a href="liste-patients.html"><i class="fas fa-users"></i> Liste des patients</a>
+                </li>
+                <li class="active">
+                    <a href="imprimer-fiche.html"><i class="fas fa-file-pdf"></i> Imprimer fiche patient</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="fas fa-user-cog"></i> Paramètres du compte</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                   
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown me-3">
+                            <a class="btn btn-light position-relative" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    3
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Nouveau rendez-vous à 14h</a></li>
+                                <li><a class="dropdown-item" href="#">Fiche patient mise à jour</a></li>
+                                <li><a class="dropdown-item" href="#">Rappel: Réunion à 16h</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="dropdown">
+                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="assets/images/avatar.jpg" alt="Avatar" class="rounded-circle me-2" width="32" height="32">
+                                <span>Mme. Dubois</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="settings.html">Paramètres</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Print Patient Record Content -->
+            <div class="container-fluid">
+                <h1 class="mt-4 mb-4">Imprimer Fiche Patient</h1>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Sélectionner un patient</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                        <input type="text" class="form-control" id="patientSearch" placeholder="Rechercher un patient...">
+                                    </div>
+                                </div>
+                                
+                                <div class="list-group patient-list">
+                                    <a href="#" class="list-group-item list-group-item-action active" data-patient-id="1">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Martin, Jean</h6>
+                                            <small>Dossier #12345</small>
+                                        </div>
+                                        <small>Né le 22/07/1976</small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-patient-id="2">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Dupont, Marie</h6>
+                                            <small>Dossier #12346</small>
+                                        </div>
+                                        <small>Née le 15/03/1985</small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-patient-id="3">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Bernard, Sophie</h6>
+                                            <small>Dossier #12347</small>
+                                        </div>
+                                        <small>Née le 10/11/1990</small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-patient-id="4">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Petit, Thomas</h6>
+                                            <small>Dossier #12348</small>
+                                        </div>
+                                        <small>Né le 05/09/1982</small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-patient-id="5">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Leroy, Émilie</h6>
+                                            <small>Dossier #12349</small>
+                                        </div>
+                                        <small>Née le 18/12/1988</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Aperçu de la fiche patient</h6>
+                                <div>
+                                    <button class="btn btn-primary me-2" id="downloadPDF">
+                                        <i class="fas fa-download"></i> Télécharger
+                                    </button>
+                                    <button class="btn btn-success" id="printRecord">
+                                        <i class="fas fa-print"></i> Imprimer
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="patientRecordPreview">
+                                    <div class="patient-record">
+                                        <div class="record-header">
+                                            <div class="clinic-info">
+                                                <h2>Clinique Médicale</h2>
+                                                <p>15 Avenue de la Santé, 75001 Paris</p>
+                                                <p>Tél: 01 23 45 67 89 | Email: contact@clinique-medicale.fr</p>
+                                            </div>
+                                            <div class="record-title">
+                                                <h3>FICHE PATIENT</h3>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="patient-info-section">
+                                            <h4>Informations personnelles</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p><strong>Numéro de dossier:</strong> 12345</p>
+                                                    <p><strong>Nom:</strong> Martin</p>
+                                                    <p><strong>Prénom:</strong> Jean</p>
+                                                    <p><strong>Date de naissance:</strong> 22/07/1976</p>
+                                                    <p><strong>Sexe:</strong> Masculin</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><strong>Téléphone:</strong> 06 98 76 54 32</p>
+                                                    <p><strong>Email:</strong> jean.martin@email.com</p>
+                                                    <p><strong>Adresse:</strong> 10 Rue des Roses, 75002 Paris</p>
+                                                    <p><strong>Numéro de sécurité sociale:</strong> 1 76 07 22 123 456 78</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="medical-info-section">
+                                            <h4>Informations médicales</h4>
+                                            <p><strong>Médecin référent:</strong> Dr. Lefèvre</p>
+                                            <p><strong>Allergies:</strong> Aucune connue</p>
+                                            <p><strong>Médicaments actuels:</strong> Aucun</p>
+                                            <p><strong>Historique médical:</strong> Appendicectomie en 2010. Fracture du bras gauche en 2015.</p>
+                                        </div>
+                                        
+                                        <div class="emergency-contact-section">
+                                            <h4>Contact d'urgence</h4>
+                                            <p><strong>Nom:</strong> Martin, Claire</p>
+                                            <p><strong>Téléphone:</strong> 06 12 34 56 78</p>
+                                            <p><strong>Relation:</strong> Épouse</p>
+                                        </div>
+                                        
+                                        <div class="recent-visits-section">
+                                            <h4>Visites récentes</h4>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Médecin</th>
+                                                        <th>Motif</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>05/05/2025</td>
+                                                        <td>Dr. Lefèvre</td>
+                                                        <td>Consultation de routine</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10/03/2025</td>
+                                                        <td>Dr. Moreau</td>
+                                                        <td>Douleurs lombaires</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>15/01/2025</td>
+                                                        <td>Dr. Lefèvre</td>
+                                                        <td>Syndrome grippal</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <div class="upcoming-appointments-section">
+                                            <h4>Rendez-vous à venir</h4>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Heure</th>
+                                                        <th>Médecin</th>
+                                                        <th>Motif</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>12/05/2025</td>
+                                                        <td>14:30</td>
+                                                        <td>Dr. Lefèvre</td>
+                                                        <td>Suivi douleurs lombaires</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <div class="record-footer">
+                                            <p>Document généré le 12/05/2025 à 16:00 par Mme. Dubois</p>
+                                            <p>Ce document est confidentiel et contient des informations médicales protégées.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/print.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* Responsive Styles for Admin Dashboard */
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+    .card-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .sidebar {
+        width: 80px;
+        transition: var(--transition-speed);
+    }
+    
+    .sidebar.active {
+        width: var(--sidebar-width);
+    }
+    
+    .sidebar .sidebar-header h3 {
+        display: none;
+    }
+    
+    .sidebar.active .sidebar-header h3 {
+        display: block;
+    }
+    
+    .sidebar-menu ul li a span {
+        display: none;
+    }
+    
+    .sidebar.active .sidebar-menu ul li a span {
+        display: block;
+    }
+    
+    .main-content {
+        width: calc(100% - 80px);
+        left: 80px;
+    }
+    
+    .main-content.active {
+        width: calc(100% - var(--sidebar-width));
+        left: var(--sidebar-width);
+    }
+    
+    .search {
+        width: 200px;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .card-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .search {
+        display: none;
+    }
+    
+    .modal-content {
+        width: 90%;
+    }
+    
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .table-filter {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .data-table {
+        font-size: 0.9rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .topbar {
+        padding: 0 10px;
+    }
+    
+    .dropdown-toggle span {
+        display: none;
+    }
+    
+    .user-menu {
+        gap: 10px;
+    }
+    
+    .welcome-message h2 {
+        font-size: 1.5rem;
+    }
+    
+    .welcome-message p {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .card-box .numbers {
+        font-size: 1.5rem;
+    }
+    
+    .card-box .card-icon {
+        font-size: 2rem;
+    }
+    
+    .data-table th, .data-table td {
+        padding: 8px 10px;
+    }
+}

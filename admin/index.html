@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil | Administration Clinique</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image" href="images/logo.png">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3> Admin </h3>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="active">
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Accueil</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Gestion des utilisateurs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="backup.html">
+                            <i class="fas fa-database"></i>
+                            <span>Sauvegarde du système</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="history.html">
+                            <i class="fas fa-history"></i>
+                            <span>Historique des actions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Paramètres du compte</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation Bar -->
+            <div class="topbar">
+                <div class="user-menu">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">
+                            <img src="assets/images/avatar.png" alt="Avatar">
+                            <span>M. Mohamed</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="settings.html"><i class="fas fa-user-cog"></i> Profil</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Paramètres</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dashboard Content -->
+            <div class="dashboard">
+                <div class="welcome-message">
+                    <h2>Bienvenue, M. Mohamed</h2>
+                    <p>Voici un aperçu rapide de l'état du système.</p>
+                </div>
+                
+                <!-- Statistics Cards -->
+                <div class="card-row">
+                    <!-- Doctors Card -->
+                    <div class="card-box primary">
+                        <div class="card-content">
+                            <div>
+                                <h4>Médecins</h4>
+                                <div class="numbers">12</div>
+                            </div>
+                            <div class="card-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Patients Card -->
+                    <div class="card-box success">
+                        <div class="card-content">
+                            <div>
+                                <h4>Patients</h4>
+                                <div class="numbers">248</div>
+                            </div>
+                            <div class="card-icon">
+                                <i class="fas fa-user-injured"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Appointments Card -->
+                    <div class="card-box warning">
+                        <div class="card-content">
+                            <div>
+                                <h4>Rendez-vous aujourd'hui</h4>
+                                <div class="numbers">32</div>
+                            </div>
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Last Backup Card -->
+                    <div class="card-box danger">
+                        <div class="card-content">
+                            <div>
+                                <h4>Dernière sauvegarde</h4>
+                                <div class="numbers">5 jours</div>
+                            </div>
+                            <div class="card-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Weekly Activity Chart -->
+                <div class="chart-container">
+                    <h3>Analyse hebdomadaire des activités</h3>
+                    <canvas id="weeklyActivityChart"></canvas>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="table-container">
+                    <h3>Activités récentes</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Utilisateur</th>
+                                <th>Action</th>
+                                <th>Date</th>
+                                <th>Heure</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dr. Ahmed Benali</td>
+                                <td>Connexion au système</td>
+                                <td>09/05/2025</td>
+                                <td>09:45</td>
+                            </tr>
+                            <tr>
+                                <td>Samira Hadj</td>
+                                <td>Ajout d'un nouveau patient</td>
+                                <td>09/05/2025</td>
+                                <td>09:30</td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Fatima Mansouri</td>
+                                <td>Mise à jour d'un dossier médical</td>
+                                <td>09/05/2025</td>
+                                <td>09:15</td>
+                            </tr>
+                            <tr>
+                                <td>Omar Benmoussa</td>
+                                <td>Planification d'un rendez-vous</td>
+                                <td>09/05/2025</td>
+                                <td>09:00</td>
+                            </tr>
+                            <tr>
+                                <td>M. Mohamed</td>
+                                <td>Connexion au système</td>
+                                <td>09/05/2025</td>
+                                <td>08:45</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+           
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

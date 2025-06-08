@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medcin Manager - Dossiers Médicaux</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <!-- Sidebar verticale -->
+    <nav class="sidebar">
+        <a class="sidebar-brand" href="index.html">
+            <i class="fas fa-heartbeat"></i><span>Medcin Manager</span>
+        </a>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <i class="fas fa-chart-line"></i><span>Tableau de bord</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html">
+                    <i class="fas fa-user-circle"></i><span>Mon compte</span>
+                </a>
+            </li>
+            <li>
+                <a class="active" href="medical-files.html">
+                    <i class="fas fa-folder-open"></i><span>Dossiers médicaux</span>
+                </a>
+            </li>
+            <li>
+                <a href="medications.html">
+                    <i class="fas fa-pills"></i><span>Stock médicaments</span>
+                </a>
+            </li>
+        </ul>
+        <div class="logout">
+            <a href="#">
+                <i class="fas fa-sign-out-alt"></i><span>Déconnexion</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="display-5 fw-bold"><i class="fas fa-folder-open me-2 text-primary"></i>Dossiers Médicaux</h1>
+            <a href="add-file.html" class="btn btn-success"><i class="fas fa-plus-circle me-1"></i>Nouveau dossier</a>
+        </div>
+
+        <!-- Filtres et recherche -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher un Patient..." aria-label="Rechercher">
+                            <button class="btn btn-outline-primary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-md-end gap-2">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-filter me-1"></i>Filtrer
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Date (récent → ancien)</a></li>
+                                <li><a class="dropdown-item" href="#">Date (ancien → récent)</a></li>
+                                <li><a class="dropdown-item" href="#">Nom (A → Z)</a></li>
+                                <li><a class="dropdown-item" href="#">Nom (Z → A)</a></li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline-secondary"><i class="fas fa-print me-1"></i>Imprimer</button>
+                    </div>
+                </div>
+
+                <!-- Tableau des patients -->
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Patient</th>
+                                <th>ID</th>
+                                <th>Naissance</th>
+                                <th>Dernière visite</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Sophie Martin</div>
+                                            <small class="text-muted">F, 32 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-001</td>
+                                <td>15/03/1993</td>
+                                <td>15/03/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-001', 'Sophie Martin')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-001', 'Sophie Martin')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-001', 'Sophie Martin')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-001', 'Sophie Martin')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Thomas Dubois</div>
+                                            <small class="text-muted">H, 45 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-002</td>
+                                <td>23/09/1979</td>
+                                <td>18/03/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-002', 'Thomas Dubois')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-002', 'Thomas Dubois')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-002', 'Thomas Dubois')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-002', 'Thomas Dubois')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Julie Leroy</div>
+                                            <small class="text-muted">F, 29 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-003</td>
+                                <td>07/11/1996</td>
+                                <td>05/04/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">lossy jala</div>
+                                            <small class="text-muted">F, 24 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-004</td>
+                                <td>05/12/2000</td>
+                                <td>25/04/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Julie Leroy</div>
+                                            <small class="text-muted">F, 29 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-003</td>
+                                <td>07/11/1996</td>
+                                <td>05/04/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Julie Leroy</div>
+                                            <small class="text-muted">F, 29 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-003</td>
+                                <td>07/11/1996</td>
+                                <td>05/04/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Julie Leroy</div>
+                                            <small class="text-muted">F, 29 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-003</td>
+                                <td>07/11/1996</td>
+                                <td>05/04/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Julie Leroy</div>
+                                            <small class="text-muted">F, 29 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-003</td>
+                                <td>07/11/1996</td>
+                                <td>05/04/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Julie Leroy</div>
+                                            <small class="text-muted">F, 29 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-003</td>
+                                <td>07/11/1996</td>
+                                <td>05/04/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Julie Leroy</div>
+                                            <small class="text-muted">F, 29 ans</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PAT-2025-003</td>
+                                <td>07/11/1996</td>
+                                <td>05/04/2025</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-info" title="Voir" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="viewPatientDetails('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-eye"></i></button>
+<button class="btn btn-sm btn-outline-primary" title="Modifier" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openEditPatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-edit"></i></button>
+<button class="btn btn-sm btn-outline-warning" title="Note" data-bs-toggle="modal" data-bs-target="#viewFileModal" onclick="openNotePatient('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-sticky-note"></i></button>
+<button class="btn btn-sm btn-outline-danger" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="confirmDelete('PAT-2025-003', 'Julie Leroy')"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <nav>
+                    <ul class="pagination justify-content-center mt-3">
+                        <li class="page-item disabled"><a class="page-link" href="#">Précédent</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation de suppression -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmer la suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment supprimer le dossier de <strong id="patientName"></strong> ?</p>
+                    <div class="alert alert-danger"><i class="fas fa-exclamation-triangle me-2"></i>Cette action est irréversible.</div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <a id="confirmDeleteBtn" class="btn btn-danger">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal pour voir les détails du patient -->
+    <div class="modal fade" id="viewFileModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="patientDetailsTitle">Détails du dossier médical</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3" id="loadingSpinner">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Chargement...</span>
+                        </div>
+                        <p>Chargement des données...</p>
+                    </div>
+                    <div id="patientDetailsContent" style="display: none;">
+                        <!-- Informations générales -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fas fa-user-circle me-2"></i>Informations personnelles</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2 text-center mb-3">
+                                        <img src="/api/placeholder/120/120" class="rounded-circle" alt="Photo patient">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <p class="mb-1 text-muted">Nom complet:</p>
+                                                <p class="fw-bold" id="patientFullName">--</p>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <p class="mb-1 text-muted">ID Patient:</p>
+                                                <p class="fw-bold" id="patientId">--</p>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <p class="mb-1 text-muted">Date de naissance:</p>
+                                                <p id="patientBirthDate">--</p>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <p class="mb-1 text-muted">Âge:</p>
+                                                <p id="patientAge">--</p>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <p class="mb-1 text-muted">Téléphone:</p>
+                                                <p id="patientPhone">--</p>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <p class="mb-1 text-muted">Email:</p>
+                                                <p id="patientEmail">--</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Antécédents médicaux -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fas fa-history me-2"></i>Antécédents médicaux</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="medicalHistory">
+                                    <ul class="list-group list-group-flush" id="historyList">
+                                        <!-- Sera rempli dynamiquement -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dernières consultations -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fas fa-calendar-check me-2"></i>Dernières consultations</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Motif</th>
+                                                <th>Diagnostic</th>
+                                                <th>Médecin</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="consultationsList">
+                                            <!-- Sera rempli dynamiquement -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" id="printPatientBtn"><i class="fas fa-print me-1"></i>Imprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-3 mt-auto">
+        <div class="container text-center">
+            <p class="text-muted mb-0">© 2025 Medcin Manager - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Données de démonstration pour simuler une requête API
+        const patientsData = {
+            'PAT-2025-001': {
+                nom: 'Sophie Martin',
+                naissance: '15/03/1993',
+                age: '32 ans',
+                telephone: '06 12 34 56 78',
+                email: 'sophie.martin@email.com',
+                antecedents: [
+                    'Allergie aux arachides (diagnostiquée en 2010)',
+                    'Hypertension légère (depuis 2020)',
+                    'Fracture poignet droit (2012)'
+                ],
+                consultations: [
+                    { date: '15/03/2025', motif: 'Contrôle annuel', diagnostic: 'Bon état général', medecin: 'Dr. Bernard' }, 
+                    { date: '22/01/2025', motif: 'Migraine', diagnostic: 'Migraine de tension', medecin: 'Dr. Petit' },
+                    { date: '05/12/2024', motif: 'Douleurs abdominales', diagnostic: 'Gastro-entérite', medecin: 'Dr. Bernard' }
+                ]
+            },
+            'PAT-2025-002': {
+                nom: 'Thomas Dubois',
+                naissance: '23/09/1979',
+                age: '45 ans',
+                telephone: '06 98 76 54 32',
+                email: 'thomas.dubois@email.com',
+                antecedents: [
+                    'Diabète type 2 (diagnostiqué en 2018)',
+                    'Hypercholestérolémie (depuis 2015)',
+                    'Arthrose genou gauche (2022)'
+                ],
+                consultations: [
+                    { date: '18/03/2025', motif: 'Suivi diabète', diagnostic: 'Glycémie stable', medecin: 'Dr. Bernard' },
+                    { date: '10/02/2025', motif: 'Douleurs au genou', diagnostic: 'Arthrose évolutive', medecin: 'Dr. Bernard' },
+                    { date: '30/11/2024', motif: 'Rhume', diagnostic: 'Rhinopharyngite', medecin: 'Dr. Petit' }
+                ]
+            },
+            'PAT-2025-003': {
+                nom: 'Julie Leroy',
+                naissance: '07/11/1996',
+                age: '29 ans',
+                telephone: '07 65 43 21 09',
+                email: 'julie.leroy@email.com',
+                antecedents: [
+                    'Asthme léger (depuis 2014)',
+                    'Appendicectomie (2015)'
+                ],
+                consultations: [
+                    { date: '05/04/2025', motif: 'Contrôle asthme', diagnostic: 'Asthme bien contrôlé', medecin: 'Dr. Petit' },
+                    { date: '18/02/2025', motif: 'Consultation gynécologique', diagnostic: 'Examen normal', medecin: 'Dr. Moreau' },
+                    { date: '07/01/2025', motif: 'Angine', diagnostic: 'Angine virale', medecin: 'Dr. Bernard' }
+                ]
+            }
+        };
+        
+        function confirmDelete(id, name) {
+            document.getElementById('patientName').textContent = name;
+            document.getElementById('confirmDeleteBtn').href = `delete-file.html?id=${id}`;
+        }
+        
+        function viewPatientDetails(id, name) {
+            document.getElementById('patientDetailsTitle').textContent = `Dossier médical - ${name}`;
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('patientDetailsContent').style.display = 'none';
+            setTimeout(() => {
+                const patient = patientsData[id];
+                if (patient) {
+                    // بناء واجهة عرض منظمة فقط
+                    const content = document.getElementById('patientDetailsContent');
+                    content.innerHTML = `
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fas fa-user-circle me-2"></i>Informations personnelles</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Nom complet:</label>
+                                        <p class="fw-bold" id="patientFullName">${patient.nom}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">ID Patient:</label>
+                                        <p class="fw-bold" id="patientId">${id}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Date de naissance:</label>
+                                        <p id="patientBirthDate">${patient.naissance}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Âge:</label>
+                                        <p id="patientAge">${patient.age}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Téléphone:</label>
+                                        <p id="patientPhone">${patient.telephone}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Email:</label>
+                                        <p id="patientEmail">${patient.email}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fas fa-history me-2"></i>Antécédents médicaux</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    ${patient.antecedents.map(item => `<li class='list-group-item'><i class='fas fa-check-circle text-success me-2'></i>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fas fa-calendar-check me-2"></i>Dernières consultations</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Motif</th>
+                                                <th>Diagnostic</th>
+                                                <th>Médecin</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            ${patient.consultations.map(consultation => `
+                                                <tr>
+                                                    <td>${consultation.date}</td>
+                                                    <td>${consultation.motif}</td>
+                                                    <td>${consultation.diagnostic}</td>
+                                                    <td>${consultation.medecin}</td>
+                                                </tr>
+                                            `).join('')}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                    document.getElementById('patientDetailsContent').style.display = 'block';
+                }
+            }, 300);
+        }
+        
+        // ==== MODAL PATIENT: Mode édition et note ====
+        function openEditPatient(id, name) {
+            document.getElementById('patientDetailsTitle').textContent = `Modifier le dossier - ${name}`;
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('patientDetailsContent').style.display = 'none';
+            setTimeout(function() {
+                const patient = patientsData[id];
+                if (patient) {
+                    const content = document.getElementById('patientDetailsContent');
+                    content.innerHTML = `
+                        <form id="editPatientForm">
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0"><i class="fas fa-user-circle me-2"></i>Informations personnelles</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Nom complet:</label>
+                                            <input type="text" class="form-control" id="patientFullName" value="${patient.nom}" required>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">ID Patient:</label>
+                                            <input type="text" class="form-control" id="patientId" value="${id}" disabled>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Date de naissance:</label>
+                                            <input type="date" class="form-control" id="patientBirthDate" value="${patient.naissance}">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Âge:</label>
+                                            <input type="number" class="form-control" id="patientAge" value="${patient.age}">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Téléphone:</label>
+                                            <input type="text" class="form-control" id="patientPhone" value="${patient.telephone}">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Email:</label>
+                                            <input type="email" class="form-control" id="patientEmail" value="${patient.email}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0"><i class="fas fa-history me-2"></i>Antécédents médicaux</h5>
+                                </div>
+                                <div class="card-body">
+                                    <textarea class="form-control" id="patientAntecedents" rows="2">${patient.antecedents.join('\n')}</textarea>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0"><i class="fas fa-calendar-check me-2"></i>Dernières consultations</h5>
+                                </div>
+                                <div class="card-body">
+                                    <textarea class="form-control" id="patientConsultations" rows="2">${patient.consultations.map(c => c.date + ' | ' + c.motif + ' | ' + c.diagnostic + ' | ' + c.medecin).join('\n')}</textarea>
+                                    <small class="text-muted">Format: date | motif | diagnostic | médecin (une ligne par consultation)</small>
+                                </div>
+                            </div>
+                        </form>
+                    `;
+                    let footer = document.querySelector('#viewFileModal .modal-footer');
+                    let saveBtn = document.getElementById('saveEditBtn');
+                    // Hide note save button if exists
+                    let saveNoteBtn = document.getElementById('saveNoteBtn');
+                    if (saveNoteBtn) saveNoteBtn.style.display = 'none';
+                    if (!saveBtn) {
+                        saveBtn = document.createElement('button');
+                        saveBtn.className = 'btn btn-success';
+                        saveBtn.id = 'saveEditBtn';
+                        saveBtn.innerHTML = '<i class="fas fa-save me-1"></i>Enregistrer';
+                        footer.appendChild(saveBtn);
+                    } else {
+                        saveBtn.style.display = '';
+                    }
+                    saveBtn.onclick = function(e) {
+                        e.preventDefault();
+                        const nom = document.getElementById('patientFullName').value;
+                        const naissance = document.getElementById('patientBirthDate').value;
+                        const age = document.getElementById('patientAge').value;
+                        const telephone = document.getElementById('patientPhone').value;
+                        const email = document.getElementById('patientEmail').value;
+                        const antecedents = document.getElementById('patientAntecedents').value.split('\n');
+                        const consultationsRaw = document.getElementById('patientConsultations').value.split('\n');
+                        // Alert to simulate save
+                        alert(`Modifications enregistrées:\nNom: ${nom}\nNaissance: ${naissance}\nÂge: ${age}\nTéléphone: ${telephone}\nEmail: ${email}\nAntécédents: ${antecedents.join(', ')}\nConsultations: ${consultationsRaw.join('; ')}`);
+                    };
+                    // Hide note textarea if exists
+                    let noteArea = document.getElementById('noteTextarea');
+                    if (noteArea) noteArea.style.display = 'none';
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                    document.getElementById('patientDetailsContent').style.display = 'block';
+                }
+            }, 200);
+        }
+        
+
+        function openNotePatient(id, name) {
+            viewPatientDetails(id, name);
+            setTimeout(function() {
+                // بناء نموذج الملاحظة داخل المودال
+                const content = document.getElementById('patientDetailsContent');
+                content.innerHTML = `
+                    <form id="notePatientForm">
+                        <div class="mb-3">
+                            <label for="noteTextarea" class="form-label">Ajouter une note :</label>
+                            <textarea class="form-control" id="noteTextarea" rows="5" placeholder="Ajouter une note..."></textarea>
+                        </div>
+                        <div id="notesHistory" class="mb-3"></div>
+                    </form>
+                `;
+                let footer = document.querySelector('#viewFileModal .modal-footer');
+                let saveNoteBtn = document.getElementById('saveNoteBtn');
+                if (!saveNoteBtn) {
+                    saveNoteBtn = document.createElement('button');
+                    saveNoteBtn.className = 'btn btn-warning';
+                    saveNoteBtn.id = 'saveNoteBtn';
+                    saveNoteBtn.innerHTML = '<i class="fas fa-save me-1"></i>Enregistrer la note';
+                    footer.appendChild(saveNoteBtn);
+                } else {
+                    saveNoteBtn.style.display = '';
+                }
+                saveNoteBtn.onclick = function(e) {
+                    e.preventDefault();
+                    const note = document.getElementById('noteTextarea').value.trim();
+                    if (!note) {
+                        alert('Veuillez saisir une note.');
+                        return;
+                    }
+                    // Récupérer les notes existantes depuis localStorage
+                    let notes = JSON.parse(localStorage.getItem('notes_'+id) || '[]');
+                    notes.push({date: new Date().toLocaleString(), text: note});
+                    localStorage.setItem('notes_'+id, JSON.stringify(notes));
+                    // Afficher la note ajoutée dans l'historique
+                    afficherHistoriqueNotes(id);
+                    document.getElementById('noteTextarea').value = '';
+                    saveNoteBtn.innerHTML = '<i class="fas fa-check me-1"></i>Note enregistrée!';
+                    setTimeout(()=>{ saveNoteBtn.innerHTML = '<i class="fas fa-save me-1"></i>Enregistrer la note'; }, 1500);
+                };
+                // إخفاء زر التعديل إذا وجد
+                let saveEditBtn = document.getElementById('saveEditBtn');
+                if (saveEditBtn) saveEditBtn.style.display = 'none';
+                // Afficher l'historique des notes si existant
+                afficherHistoriqueNotes(id);
+            }, 150);
+        }
+
+        // Fonction pour afficher l'historique des notes
+        function afficherHistoriqueNotes(id) {
+            let notes = JSON.parse(localStorage.getItem('notes_'+id) || '[]');
+            let historyDiv = document.getElementById('notesHistory');
+            if (!historyDiv) return;
+            if (notes.length === 0) {
+                historyDiv.innerHTML = '<div class="alert alert-info">Aucune note précédente.</div>';
+            } else {
+                historyDiv.innerHTML = '<label class="form-label">Historique des notes :</label>' +
+                    notes.reverse().map(n => `<div class='alert alert-secondary mb-2'><b>${n.date}</b><br>${n.text}</div>`).join('');
+            }
+        }
+
+        // عند فتح التفاصيل (eye): إظهار فقط العرض
+
+        
+        // Initialiser les tooltips
+        const tooltipTriggerList = document.querySelectorAll('[title]');
+        tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
+    </script>
+</body>
+</html>

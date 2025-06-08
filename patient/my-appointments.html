@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Rendez-vous - Tableau de Bord Patient</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image" href="images/logo.png">
+    <style>
+        /* Styles spécifiques à la page des rendez-vous */
+        .appointments-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .filter-container {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background-color: #3498db;
+            color: #fff;
+            border-color: #3498db;
+        }
+
+        .appointments-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .appointments-table th {
+            background-color: #f9f9f9;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #eee;
+        }
+
+        .appointments-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-confirmed {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+
+        .status-completed {
+            background-color: #95a5a6;
+            color: #fff;
+        }
+
+        .status-cancelled {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .cancel-btn {
+            background-color: transparent;
+            color: #e74c3c;
+            border: 1px solid #e74c3c;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-btn:hover {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .no-appointments {
+            text-align: center;
+            padding: 30px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="book-appointment.html">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Prendre Rendez-vous</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="my-appointments.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Mes Rendez-vous</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="medical-results.html">
+                        <i class="fas fa-file-medical"></i>
+                        <span>Mes Résultats</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="account-settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Site Footer -->        
+        <footer class="site-footer">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="logo">
+                <span class="logo-text">CliniSys  </span>
+            </div>
+            <div class="footer-links">
+                
+                <a href="../accueil/pages/contact.html">Contact</a>
+                <a href="../accueil/pages/about.html">À propos</a>
+            </div>
+        </footer>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <img src="assets/img/profile-placeholder.jpg" alt="Photo de Profil" class="profile-pic">
+                    <span class="user-name">Ahmed Benali</span>
+                </div>
+                <div class="logout">
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Déconnexion
+                    </button>
+                </div>
+            </div>
+
+            <!-- Appointments Content -->
+            <div class="dashboard-content">
+                <div class="welcome-message">
+                    <h1>Mes Rendez-vous</h1>
+                    <p>Consultez et gérez vos rendez-vous médicaux</p>
+                    <a href="book-appointment.html" class="new-appointment-btn">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span class="new-appointment-tooltip">Prendre un rendez-vous</span>
+                    </a>
+                </div>
+
+                <div class="appointments-container">
+                    <div class="filter-container">
+                        <button class="filter-btn active" data-filter="all">Tous</button>
+                        <button class="filter-btn" data-filter="upcoming">À venir</button>
+                        <button class="filter-btn" data-filter="past">Passés</button>
+                        <button class="filter-btn" data-filter="cancelled">Annulés</button>
+                    </div>
+
+                    <table class="appointments-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Heure</th>
+                                <th>Médecin</th>
+                                <th>Spécialité</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="appointment-item upcoming">
+                                <td>5 Mai 2025</td>
+                                <td>10h30</td>
+                                <td>Dr. Sarah Johnson</td>
+                                <td>Cardiologie</td>
+                                <td><span class="status status-confirmed">Confirmé</span></td>
+                                <td><button class="cancel-btn"><i class="fas fa-times"></i> Annuler</button></td>
+                            </tr>
+                            <tr class="appointment-item upcoming">
+                                <td>15 Mai 2025</td>
+                                <td>14h00</td>
+                                <td>Dr. Marc Dupont</td>
+                                <td>Dermatologie</td>
+                                <td><span class="status status-confirmed">Confirmé</span></td>
+                                <td><button class="cancel-btn"><i class="fas fa-times"></i> Annuler</button></td>
+                            </tr>
+                            <tr class="appointment-item past">
+                                <td>10 Avril 2025</td>
+                                <td>09h15</td>
+                                <td>Dr. Marie Lambert</td>
+                                <td>Médecine Générale</td>
+                                <td><span class="status status-completed">Terminé</span></td>
+                                <td></td>
+                            </tr>
+                            <tr class="appointment-item past">
+                                <td>25 Mars 2025</td>
+                                <td>11h00</td>
+                                <td>Dr. Thomas Martin</td>
+                                <td>Ophtalmologie</td>
+                                <td><span class="status status-completed">Terminé</span></td>
+                                <td></td>
+                            </tr>
+                            <tr class="appointment-item cancelled">
+                                <td>2 Avril 2025</td>
+                                <td>16h30</td>
+                                <td>Dr. Sophie Renaud</td>
+                                <td>Neurologie</td>
+                                <td><span class="status status-cancelled">Annulé</span></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filtrage des rendez-vous
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const appointmentItems = document.querySelectorAll('.appointment-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Retirer la classe active de tous les boutons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Ajouter la classe active au bouton cliqué
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Afficher/masquer les rendez-vous en fonction du filtre
+                    appointmentItems.forEach(item => {
+                        if (filter === 'all') {
+                            item.style.display = 'table-row';
+                        } else {
+                            if (item.classList.contains(filter)) {
+                                item.style.display = 'table-row';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Gestion des boutons d'annulation
+            const cancelButtons = document.querySelectorAll('.cancel-btn');
+            
+            cancelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
+                        const row = this.closest('tr');
+                        const statusCell = row.querySelector('.status');
+                        
+                        // Changer le statut à "Annulé"
+                        statusCell.className = 'status status-cancelled';
+                        statusCell.textContent = 'Annulé';
+                        
+                        // Supprimer le bouton d'annulation
+                        this.remove();
+                        
+                        // Changer la classe pour le filtrage
+                        row.className = 'appointment-item cancelled';
+                        
+                        // Réappliquer le filtre actif
+                        const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                        if (activeFilter !== 'all' && activeFilter !== 'cancelled') {
+                            row.style.display = 'none';
+                        }
+                        
+                        alert('Rendez-vous annulé avec succès.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

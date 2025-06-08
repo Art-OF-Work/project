@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Médicament - Medcin Manager</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-clinic-medical me-2"></i>Medcin Manager
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Tableau de bord
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">
+                            <i class="fas fa-user-md me-1"></i>Mon Profil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="medical-files.html">
+                            <i class="fas fa-folder-open me-1"></i>Dossiers Médicaux
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="medications.html">
+                            <i class="fas fa-pills me-1"></i>Médicaments
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i>Dr. Martin
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="profile.html">Mon profil</a></li>
+                            <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-4">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="medications.html">Médicaments</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ajouter un médicament</li>
+            </ol>
+        </nav>
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Ajouter un nouveau médicament</h4>
+            </div>
+            <div class="card-body">
+                <form id="addMedicationForm">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="medicationName" class="form-label fw-bold">Nom du médicament *</label>
+                                <input type="text" class="form-control" id="medicationName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="medicationDescription" class="form-label fw-bold">Description</label>
+                                <textarea class="form-control" id="medicationDescription" rows="3" placeholder="Décrivez brièvement le médicament..."></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="medicationPackaging" class="form-label fw-bold">Conditionnement *</label>
+                                        <input type="text" class="form-control" id="medicationPackaging" placeholder="Ex: Boîte de 14 comprimés" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="medicationCategory" class="form-label fw-bold">Catégorie *</label>
+                                        <select class="form-select" id="medicationCategory" required>
+                                            <option value="" selected disabled>Sélectionner une catégorie</option>
+                                            <option value="antibiotique">Antibiotique</option>
+                                            <option value="antalgique">Antalgique</option>
+                                            <option value="anti-inflammatoire">Anti-inflammatoire</option>
+                                            <option value="anti-acide">Anti-acide</option>
+                                            <option value="autre">Autre</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">Image du médicament</h6>
+                                    <div class="mb-3">
+                                        <img src="images/medicine-placeholder.png" alt="Aperçu de l'image" class="img-fluid mb-2" style="max-height: 150px;">
+                                        <input type="file" class="form-control" id="medicationImage" accept="image/*">
+                                    </div>
+                                    <small class="text-muted">Format recommandé: JPG ou PNG, max 2MB</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="medicationQuantity" class="form-label fw-bold">Quantité en stock *</label>
+                                <input type="number" class="form-control" id="medicationQuantity" min="0" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="medicationThreshold" class="form-label fw-bold">Seuil d'alerte</label>
+                                <input type="number" class="form-control" id="medicationThreshold" min="0" placeholder="Ex: 5">
+                                <small class="text-muted">Vous serez alerté si le stock passe sous ce seuil</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="medicationPrice" class="form-label fw-bold">Prix unitaire (€) *</label>
+                                <input type="number" class="form-control" id="medicationPrice" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="medicationExpiry" class="form-label fw-bold">Date d'expiration *</label>
+                                <input type="date" class="form-control" id="medicationExpiry" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="medicationInstructions" class="form-label fw-bold">Instructions</label>
+                                <textarea class="form-control" id="medicationInstructions" rows="3" placeholder="Instructions d'utilisation du médicament..."></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="medicationSideEffects" class="form-label fw-bold">Effets secondaires</label>
+                                <textarea class="form-control" id="medicationSideEffects" rows="3" placeholder="Principaux effets secondaires..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="medicationNotes" class="form-label fw-bold">Notes supplémentaires</label>
+                                <textarea class="form-control" id="medicationNotes" rows="2" placeholder="Informations complémentaires..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-info" role="alert">
+                                <i class="fas fa-info-circle me-2"></i>Les champs marqués d'un astérisque (*) sont obligatoires.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end mt-3">
+                        <a href="medications.html" class="btn btn-outline-secondary me-2">
+                            <i class="fas fa-times me-1"></i>Annuler
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Enregistrer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center text-muted py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">© 2025 Medcin Manager - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Activation des tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+            
+            // Gestionnaire d'événement pour le formulaire
+            document.getElementById('addMedicationForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Simuler l'enregistrement
+                alert('Médicament ajouté avec succès!');
+                
+                // Rediriger vers la liste des médicaments
+                window.location.href = 'medications.html';
+            });
+            
+            // Prévisualisation de l'image
+            document.getElementById('medicationImage').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const img = document.querySelector('img');
+                        img.src = event.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

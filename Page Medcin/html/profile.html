@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medcin Manager - Mon Compte</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar verticale -->
+    <nav class="sidebar">
+        <a class="sidebar-brand" href="index.html">
+            <i class="fas fa-heartbeat"></i><span>Medcin Manager</span>
+        </a>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <i class="fas fa-chart-line"></i><span>Tableau de bord</span>
+                </a>
+            </li>
+            <li>
+                <a class="active" href="profile.html">
+                    <i class="fas fa-user-circle"></i><span>Mon compte</span>
+                </a>
+            </li>
+            <li>
+                <a href="medical-files.html">
+                    <i class="fas fa-folder-open"></i><span>Dossiers médicaux</span>
+                </a>
+            </li>
+            <li>
+                <a href="medications.html">
+                    <i class="fas fa-pills"></i><span>Stock médicaments</span>
+                </a>
+            </li>
+        </ul>
+        <div class="logout">
+            <a href="#">
+                <i class="fas fa-sign-out-alt"></i><span>Déconnexion</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="main-content" style="min-height: 100vh; margin-left: 250px;">
+        <div class="container py-5">
+            <div class="row mb-4">
+                <div class="col">
+                    <h1 class="display-5 fw-bold">
+                        <i class="fas fa-user-md me-2 text-primary"></i>Mon Compte
+                    </h1>
+                    <p class="text-muted">Gérez vos informations personnelles et préférences</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="/api/placeholder/150/150" class="rounded-circle img-thumbnail" alt="Photo de profil">
+                        </div>
+                        <h5 class="card-title">Dr. Martin Dupont</h5>
+                        <p class="text-muted">Cardiologue</p>
+                        <div class="d-grid">
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                                <i class="fas fa-camera me-1"></i>Changer la photo
+                            </button>
+                        </div>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="#information" class="list-group-item list-group-item-action active" data-bs-toggle="list">
+                            <i class="fas fa-id-card-alt me-2"></i>Informations personnelles
+                        </a>
+                        <a href="#schedule" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                            <i class="fas fa-calendar-alt me-2"></i>Horaires de travail
+                        </a>
+                        <a href="#password" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                            <i class="fas fa-key me-2"></i>Mot de passe
+                        </a>
+                        <a href="#notifications" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                            <i class="fas fa-bell me-2"></i>Notifications
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <!-- Informations personnelles -->
+                            <div class="tab-pane fade show active" id="information">
+                                <h4 class="card-title mb-4">Informations personnelles</h4>
+                                <form>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="firstName" class="form-label">Prénom</label>
+                                            <input type="text" class="form-control" id="firstName" value="Martin">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="lastName" class="form-label">Nom</label>
+                                            <input type="text" class="form-control" id="lastName" value="Dupont">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="specialty" class="form-label">Spécialité</label>
+                                            <input type="text" class="form-control" id="specialty" value="Cardiologue">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="licenseNumber" class="form-label">Numéro de licence</label>
+                                            <input type="text" class="form-control" id="licenseNumber" value="FR-MED-12345">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Adresse e-mail</label>
+                                            <input type="email" class="form-control" id="email" value="martin.dupont@medcin.fr">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">Numéro de téléphone</label>
+                                            <input type="tel" class="form-control" id="phone" value="01 23 45 67 89">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">Adresse du cabinet</label>
+                                        <textarea class="form-control" id="address" rows="3">123 Avenue de la Médecine
+75001 Paris, France</textarea>
+                                    </div>
+
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save me-2"></i>Enregistrer les modifications
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Horaires de travail -->
+                            <div class="tab-pane fade" id="schedule">
+                                <h4 class="card-title mb-4">Horaires de travail</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Jour</th>
+                                                <th>Matin</th>
+                                                <th>Après-midi</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lundi</td>
+                                                <td>09:00 - 12:00</td>
+                                                <td>14:00 - 18:00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-day="Lundi" data-morning-start="09:00" data-morning-end="12:00" data-afternoon-start="14:00" data-afternoon-end="18:00">
+                                                        <i class="fas fa-edit"></i> Modifier
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mardi</td>
+                                                <td>09:00 - 12:00</td>
+                                                <td>14:00 - 18:00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-day="Mardi" data-morning-start="09:00" data-morning-end="12:00" data-afternoon-start="14:00" data-afternoon-end="18:00">
+                                                        <i class="fas fa-edit"></i> Modifier
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mercredi</td>
+                                                <td>09:00 - 12:00</td>
+                                                <td>Fermé</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-day="Mercredi" data-morning-start="09:00" data-morning-end="12:00" data-afternoon-closed="true">
+                                                        <i class="fas fa-edit"></i> Modifier
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jeudi</td>
+                                                <td>09:00 - 12:00</td>
+                                                <td>14:00 - 18:00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-day="Jeudi" data-morning-start="09:00" data-morning-end="12:00" data-afternoon-start="14:00" data-afternoon-end="18:00">
+                                                        <i class="fas fa-edit"></i> Modifier
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vendredi</td>
+                                                <td>09:00 - 12:00</td>
+                                                <td>14:00 - 17:00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-day="Vendredi" data-morning-start="09:00" data-morning-end="12:00" data-afternoon-start="14:00" data-afternoon-end="17:00">
+                                                        <i class="fas fa-edit"></i> Modifier
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Samedi</td>
+                                                <td>09:00 - 12:00</td>
+                                                <td>Fermé</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-day="Samedi" data-morning-start="09:00" data-morning-end="12:00" data-afternoon-closed="true">
+                                                        <i class="fas fa-edit"></i> Modifier
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dimanche</td>
+                                                <td>Fermé</td>
+                                                <td>Fermé</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-day="Dimanche" data-morning-closed="true" data-afternoon-closed="true">
+                                                        <i class="fas fa-edit"></i> Modifier
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-end mt-3">
+                                    <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#copyScheduleModal">
+                                        <i class="fas fa-copy me-2"></i>Copier les horaires
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>Enregistrer les horaires
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Changement de mot de passe -->
+                            <div class="tab-pane fade" id="password">
+                                <h4 class="card-title mb-4">Changer le mot de passe</h4>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="currentPassword" class="form-label">Mot de passe actuel</label>
+                                        <input type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="newPassword" class="form-label">Nouveau mot de passe</label>
+                                        <input type="password" class="form-control" id="newPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirmPassword" class="form-label">Confirmer le nouveau mot de passe</label>
+                                        <input type="password" class="form-control" id="confirmPassword">
+                                    </div>
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle me-2"></i> Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.
+                                    </div>
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-key me-2"></i>Mettre à jour le mot de passe
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Notifications -->
+                            <div class="tab-pane fade" id="notifications">
+                                <h4 class="card-title mb-4">Paramètres de notifications</h4>
+                                <form>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="appointmentReminder" checked>
+                                        <label class="form-check-label" for="appointmentReminder">Rappels de rendez-vous</label>
+                                        <small class="form-text text-muted d-block">Recevez des notifications pour les rendez-vous à venir</small>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="medicationAlerts" checked>
+                                        <label class="form-check-label" for="medicationAlerts">Alertes de stock de médicaments</label>
+                                        <small class="form-text text-muted d-block">Soyez alerté lorsque le stock de médicaments est faible</small>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="patientUpdates" checked>
+                                        <label class="form-check-label" for="patientUpdates">Mises à jour des dossiers patients</label>
+                                        <small class="form-text text-muted d-block">Soyez informé des modifications importantes dans les dossiers patients</small>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                                        <label class="form-check-label" for="emailNotifications">Notifications par e-mail</label>
+                                        <small class="form-text text-muted d-block">Recevez des notifications par e-mail</small>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="smsNotifications">
+                                        <label class="form-check-label" for="smsNotifications">Notifications par SMS</label>
+                                        <small class="form-text text-muted d-block">Recevez des notifications par SMS</small>
+                                    </div>
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save me-2"></i>Enregistrer les préférences
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour changer la photo -->
+    <div class="modal fade" id="photoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Changer la photo de profil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="profilePhoto" class="form-label">Sélectionner une nouvelle photo</label>
+                        <input class="form-control" type="file" id="profilePhoto">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour modifier les horaires -->
+    <div class="modal fade" id="editScheduleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifier les horaires</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="scheduleForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" id="dayLabel">Jour: </label>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="morningOpen" checked>
+                                    <label class="form-check-label fw-bold" for="morningOpen">Matin</label>
+                                </div>
+                            </div>
+                            <div class="card-body" id="morningSchedule">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="morningStart" class="form-label">Heure de début</label>
+                                        <input type="time" class="form-control" id="morningStart" value="09:00">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="morningEnd" class="form-label">Heure de fin</label>
+                                        <input type="time" class="form-control" id="morningEnd" value="12:00">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="afternoonOpen" checked>
+                                    <label class="form-check-label fw-bold" for="afternoonOpen">Après-midi</label>
+                                </div>
+                            </div>
+                            <div class="card-body" id="afternoonSchedule">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="afternoonStart" class="form-label">Heure de début</label>
+                                        <input type="time" class="form-control" id="afternoonStart" value="14:00">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="afternoonEnd" class="form-label">Heure de fin</label>
+                                        <input type="time" class="form-control" id="afternoonEnd" value="18:00">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="saveSchedule">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour copier les horaires -->
+    <div class="modal fade" id="copyScheduleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Copier les horaires</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Copier les horaires du</label>
+                            <select class="form-select" id="sourceDaySelect">
+                                <option value="Lundi">Lundi</option>
+                                <option value="Mardi">Mardi</option>
+                                <option value="Mercredi">Mercredi</option>
+                                <option value="Jeudi">Jeudi</option>
+                                <option value="Vendredi">Vendredi</option>
+                                <option value="Samedi">Samedi</option>
+                                <option value="Dimanche">Dimanche</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">vers le(s) jour(s)</label>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="copyMonday">
+                                <label class="form-check-label" for="copyMonday">Lundi</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="copyTuesday">
+                                <label class="form-check-label" for="copyTuesday">Mardi</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="copyWednesday">
+                                <label class="form-check-label" for="copyWednesday">Mercredi</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="copyThursday">
+                                <label class="form-check-label" for="copyThursday">Jeudi</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="copyFriday">
+                                <label class="form-check-label" for="copyFriday">Vendredi</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="copySaturday">
+                                <label class="form-check-label" for="copySaturday">Samedi</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="copySunday">
+                                <label class="form-check-label" for="copySunday">Dimanche</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="copyScheduleButton">Copier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">© 2025 Medcin Manager - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script pour la modification des horaires
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion du modal d'édition des horaires
+            const editScheduleModal = document.getElementById('editScheduleModal');
+            if (editScheduleModal) {
+                editScheduleModal.addEventListener('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
+                    const day = button.getAttribute('data-day');
+                    
+                    // Mise à jour du jour dans le modal
+                    document.getElementById('dayLabel').textContent = "Jour: " + day;
+                    
+                    // Stocker le jour actuel dans un attribut du bouton de sauvegarde
+                    document.getElementById('saveSchedule').setAttribute('data-current-day', day);
+                    
+                    // Gestion des horaires du matin
+                    const morningOpenCheckbox = document.getElementById('morningOpen');
+                    const morningScheduleDiv = document.getElementById('morningSchedule');
+                    const morningStart = document.getElementById('morningStart');
+                    const morningEnd = document.getElementById('morningEnd');
+                    
+                    if (button.hasAttribute('data-morning-closed')) {
+                        morningOpenCheckbox.checked = false;
+                        morningScheduleDiv.style.display = 'none';
+                    } else {
+                        morningOpenCheckbox.checked = true;
+                        morningScheduleDiv.style.display = 'block';
+                        morningStart.value = button.getAttribute('data-morning-start') || '09:00';
+                        morningEnd.value = button.getAttribute('data-morning-end') || '12:00';
+                    }
+                    
+                    // Gestion des horaires de l'après-midi
+                    const afternoonOpenCheckbox = document.getElementById('afternoonOpen');
+                    const afternoonScheduleDiv = document.getElementById('afternoonSchedule');
+                    const afternoonStart = document.getElementById('afternoonStart');
+                    const afternoonEnd = document.getElementById('afternoonEnd');
+                    
+                    if (button.hasAttribute('data-afternoon-closed')) {
+                        afternoonOpenCheckbox.checked = false;
+                        afternoonScheduleDiv.style.display = 'none';
+                    } else {
+                        afternoonOpenCheckbox.checked = true;
+                        afternoonScheduleDiv.style.display = 'block';
+                        afternoonStart.value = button.getAttribute('data-afternoon-start') || '14:00';
+                        afternoonEnd.value = button.getAttribute('data-afternoon-end') || '18:00';
+                    }
+                });
+            }
+            
+            // Ajout d'une fonction de vérification des horaires lors de la soumission du formulaire
+            const mainScheduleForm = document.querySelector('#schedule form');
+            if (mainScheduleForm) {
+                mainScheduleForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simuler l'enregistrement des horaires
+                    const overlay = document.createElement('div');
+                    overlay.className = 'position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center';
+                    overlay.style.zIndex = '9999';
+                    
+                    const spinner = document.createElement('div');
+                    spinner.className = 'spinner-border text-light';
+                    spinner.setAttribute('role', 'status');
+                    spinner.innerHTML = '<span class="visually-hidden">Chargement...</span>';
+                    
+                    overlay.appendChild(spinner);
+                    document.body.appendChild(overlay);
+                    
+                    // Simuler un délai de traitement
+                    setTimeout(() => {
+                        document.body.removeChild(overlay);
+                        
+                        // Afficher un message de confirmation
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-success alert-dismissible fade show';
+                        alertDiv.innerHTML = `
+                            <i class="fas fa-check-circle me-2"></i>
+                            Tous les horaires ont été enregistrés avec succès!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        `;
+                        document.querySelector('#schedule .card-body').prepend(alertDiv);
+                        
+                        // Suppression auto de l'alerte après 5 secondes
+                        setTimeout(() => {
+                            alertDiv.remove();
+                        }, 5000);
+                    }, 1000);
+                });
+            }
+        });
+            
+            // Gestion de la case à cocher du matin
+            const morningOpenCheckbox = document.getElementById('morningOpen');
+            if (morningOpenCheckbox) {
+                morningOpenCheckbox.addEventListener('change', function() {
+                    const morningScheduleDiv = document.getElementById('morningSchedule');
+                    morningScheduleDiv.style.display = this.checked ? 'block' : 'none';
+                });
+            }
+            
+            // Gestion de la case à cocher de l'après-midi
+            const afternoonOpenCheckbox = document.getElementById('afternoonOpen');
+            if (afternoonOpenCheckbox) {
+                afternoonOpenCheckbox.addEventListener('change', function() {
+                    const afternoonScheduleDiv = document.getElementById('afternoonSchedule');
+                    afternoonScheduleDiv.style.display = this.checked ? 'block' : 'none';
+                });
+            }
+            
+            // Fonction pour trouver le bouton d'édition correspondant à un jour
+            function findDayButton(day) {
+                const buttons = document.querySelectorAll('[data-bs-target="#editScheduleModal"]');
+                for (let button of buttons) {
+                    if (button.getAttribute('data-day') === day) {
+                        return button;
+                    }
+                }
+                return null;
+            }
+            
+            // Fonction pour mettre à jour l'affichage du tableau
+            function updateTableRow(button, morningOpen, afternoonOpen, morningStart, morningEnd, afternoonStart, afternoonEnd) {
+                const row = button.closest('tr');
+                const morningCell = row.cells[1]; // Deuxième cellule (matin)
+                const afternoonCell = row.cells[2]; // Troisième cellule (après-midi)
+                
+                // Mise à jour des cellules du tableau
+                if (morningOpen) {
+                    morningCell.textContent = morningStart + ' - ' + morningEnd;
+                    button.setAttribute('data-morning-start', morningStart);
+                    button.setAttribute('data-morning-end', morningEnd);
+                    if (button.hasAttribute('data-morning-closed')) {
+                        button.removeAttribute('data-morning-closed');
+                    }
+                } else {
+                    morningCell.textContent = 'Fermé';
+                    button.setAttribute('data-morning-closed', 'true');
+                    if (button.hasAttribute('data-morning-start')) button.removeAttribute('data-morning-start');
+                    if (button.hasAttribute('data-morning-end')) button.removeAttribute('data-morning-end');
+                }
+                
+                if (afternoonOpen) {
+                    afternoonCell.textContent = afternoonStart + ' - ' + afternoonEnd;
+                    button.setAttribute('data-afternoon-start', afternoonStart);
+                    button.setAttribute('data-afternoon-end', afternoonEnd);
+                    if (button.hasAttribute('data-afternoon-closed')) {
+                        button.removeAttribute('data-afternoon-closed');
+                    }
+                } else {
+                    afternoonCell.textContent = 'Fermé';
+                    button.setAttribute('data-afternoon-closed', 'true');
+                    if (button.hasAttribute('data-afternoon-start')) button.removeAttribute('data-afternoon-start');
+                    if (button.hasAttribute('data-afternoon-end')) button.removeAttribute('data-afternoon-end');
+                }
+            }
+            
+            // Gestion du bouton d'enregistrement des horaires
+            const saveScheduleButton = document.getElementById('saveSchedule');
+            if (saveScheduleButton) {
+                saveScheduleButton.addEventListener('click', function() {
+                    const currentDay = this.getAttribute('data-current-day');
+                    const button = findDayButton(currentDay);
+                    
+                    if (button) {
+                        const morningOpen = document.getElementById('morningOpen').checked;
+                        const afternoonOpen = document.getElementById('afternoonOpen').checked;
+                        
+                        const morningStart = document.getElementById('morningStart').value;
+                        const morningEnd = document.getElementById('morningEnd').value;
+                        const afternoonStart = document.getElementById('afternoonStart').value;
+                        const afternoonEnd = document.getElementById('afternoonEnd').value;
+                        
+                        // Mise à jour de l'affichage du tableau
+                        updateTableRow(button, morningOpen, afternoonOpen, morningStart, morningEnd, afternoonStart, afternoonEnd);
+                        
+                        // Fermer le modal
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('editScheduleModal'));
+                        modal.hide();
+                        
+                        // Afficher un message de confirmation
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
+                        alertDiv.innerHTML = `
+                            <i class="fas fa-check-circle me-2"></i>
+                            Horaires du ${currentDay} mis à jour avec succès!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        `;
+                        document.querySelector('#schedule .card-body').prepend(alertDiv);
+                        
+                        // Suppression auto de l'alerte après 3 secondes
+                        setTimeout(() => {
+                            alertDiv.remove();
+                        }, 3000);
+                    }
+                });
+            }
+            
+            // Gestion de la copie des horaires
+            const copyScheduleButton = document.getElementById('copyScheduleButton');
+            if (copyScheduleButton) {
+                copyScheduleButton.addEventListener('click', function() {
+                    const sourceDay = document.getElementById('sourceDaySelect').value;
+                    const sourceButton = findDayButton(sourceDay);
+                    
+                    if (sourceButton) {
+                        const days = [
+                            { checkbox: 'copyMonday', day: 'Lundi' },
+                            { checkbox: 'copyTuesday', day: 'Mardi' },
+                            { checkbox: 'copyWednesday', day: 'Mercredi' },
+                            { checkbox: 'copyThursday', day: 'Jeudi' },
+                            { checkbox: 'copyFriday', day: 'Vendredi' },
+                            { checkbox: 'copySaturday', day: 'Samedi' },
+                            { checkbox: 'copySunday', day: 'Dimanche' }
+                        ];
+                        
+                        // Compter combien de jours sont sélectionnés
+                        let selectedCount = 0;
+                        for (let dayItem of days) {
+                            if (document.getElementById(dayItem.checkbox).checked) {
+                                selectedCount++;
+                            }
+                        }
+                        
+                        // S'assurer qu'au moins un jour est sélectionné
+                        if (selectedCount === 0) {
+                            alert('Veuillez sélectionner au moins un jour de destination.');
+                            return;
+                        }
+                        
+                        // Récupérer les attributs du jour source
+                        const hasMorningClosed = sourceButton.hasAttribute('data-morning-closed');
+                        const hasAfternoonClosed = sourceButton.hasAttribute('data-afternoon-closed');
+                        const morningStart = sourceButton.getAttribute('data-morning-start');
+                        const morningEnd = sourceButton.getAttribute('data-morning-end');
+                        const afternoonStart = sourceButton.getAttribute('data-afternoon-start');
+                        const afternoonEnd = sourceButton.getAttribute('data-afternoon-end');
+                        
+                        // Copier vers les jours sélectionnés
+                        for (let dayItem of days) {
+                            if (document.getElementById(dayItem.checkbox).checked && dayItem.day !== sourceDay) {
+                                const targetButton = findDayButton(dayItem.day);
+                                if (targetButton) {
+                                    // Copier les attributs
+                                    if (hasMorningClosed) {
+                                        targetButton.setAttribute('data-morning-closed', 'true');
+                                        if (targetButton.hasAttribute('data-morning-start')) targetButton.removeAttribute('data-morning-start');
+                                        if (targetButton.hasAttribute('data-morning-end')) targetButton.removeAttribute('data-morning-end');
+                                    } else {
+                                        if (targetButton.hasAttribute('data-morning-closed')) targetButton.removeAttribute('data-morning-closed');
+                                        targetButton.setAttribute('data-morning-start', morningStart);
+                                        targetButton.setAttribute('data-morning-end', morningEnd);
+                                    }
+                                    
+                                    if (hasAfternoonClosed) {
+                                        targetButton.setAttribute('data-afternoon-closed', 'true');
+                                        if (targetButton.hasAttribute('data-afternoon-start')) targetButton.removeAttribute('data-afternoon-start');
+                                        if (targetButton.hasAttribute('data-afternoon-end')) targetButton.removeAttribute('data-afternoon-end');
+                                    } else {
+                                        if (targetButton.hasAttribute('data-afternoon-closed')) targetButton.removeAttribute('data-afternoon-closed');
+                                        targetButton.setAttribute('data-afternoon-start', afternoonStart);
+                                        targetButton.setAttribute('data-afternoon-end', afternoonEnd);
+                                    }
+                                    
+                                    // Mettre à jour l'affichage
+                                    updateTableRow(
+                                        targetButton, 
+                                        !hasMorningClosed, 
+                                        !hasAfternoonClosed, 
+                                        morningStart, 
+                                        morningEnd, 
+                                        afternoonStart, 
+                                        afternoonEnd
+                                    );
+                                }
+                            }
+                        }
+                        
+                        // Fermer le modal
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('copyScheduleModal'));
+                        modal.hide();
+                        
+                        // Afficher un message de confirmation
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
+                        alertDiv.innerHTML = `
+                            <i class="fas fa-check-circle me-2"></i>
+                            Horaires copiés avec succès!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        `;
+                        document.querySelector('#schedule .card-body').prepend(alertDiv);
+                        
+                        // Suppression auto de l'alerte après 3 secondes
+                        setTimeout(() => {
+                            alertDiv.remove();
+                        }, 3000);
+                    }
+                });
+            }

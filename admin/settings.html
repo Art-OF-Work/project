@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres du Compte | Administration Clinique</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image" href="images/logo.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Admin </h3>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Accueil</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Gestion des utilisateurs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="backup.html">
+                            <i class="fas fa-database"></i>
+                            <span>Sauvegarde du système</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="history.html">
+                            <i class="fas fa-history"></i>
+                            <span>Historique des actions</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="settings.html">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Paramètres du compte</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation Bar -->
+            <div class="topbar">
+                <div class="user-menu">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">
+                            <img src="assets/images/avatar.png" alt="Avatar">
+                            <span>M. Mohamed</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="settings.html"><i class="fas fa-user-cog"></i> Profil</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Paramètres</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Content -->
+            <div class="dashboard">
+                <div class="welcome-message">
+                    <h2>Paramètres du Compte</h2>
+                    <p>Gérez vos informations personnelles et les paramètres de sécurité.</p>
+                </div>
+                
+                <div class="settings-container">
+                    <!-- Personal Information -->
+                    <div class="form-container">
+                        <h3><i class="fas fa-user-shield"></i> Informations Personnelles</h3>
+                        <form id="personalInfoForm">
+                            <div class="form-group">
+                                <label for="fullName">Nom complet</label>
+                                <input type="text" id="fullName" class="form-control" value="M. Mohamed" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Adresse e-mail</label>
+                                <input type="email" id="email" class="form-control" value="mohamed@clinique.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="language">Langue préférée</label>
+                                <select id="language" class="form-control">
+                                    <option value="fr" selected>Français</option>
+                                    <option value="en">Anglais</option>
+                                    <option value="ar">Arabe</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Password Change -->
+                    <div class="form-container">
+                        <h3><i class="fas fa-lock"></i> Changer le mot de passe</h3>
+                        <form id="passwordChangeForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Mot de passe actuel</label>
+                                <input type="password" id="currentPassword" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Nouveau mot de passe</label>
+                                <input type="password" id="newPassword" class="form-control" required>
+                                <div class="password-strength">
+                                    <div class="strength-meter">
+                                        <div class="strength-bar" id="strengthBar"></div>
+                                    </div>
+                                    <span id="strengthText">Force: Faible</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirmer le nouveau mot de passe</label>
+                                <input type="password" id="confirmPassword" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Changer le mot de passe</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Two-Factor Authentication -->
+                    <div class="form-container">
+                        <h3><i class="fas fa-mobile-alt"></i> Authentification à deux facteurs (2FA)</h3>
+                        <div class="two-factor-status">
+                            <p>Statut: <span class="status suspended">Désactivé</span></p>
+                            <p>L'authentification à deux facteurs ajoute une couche de sécurité supplémentaire à votre compte.</p>
+                        </div>
+                        <button id="enable2FABtn" class="btn btn-success">Activer l'authentification à deux facteurs</button>
+                    </div>
+                    
+                    <!-- Account Deletion -->
+                    <div class="form-container danger-zone">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Zone de danger</h3>
+                        <div class="account-deletion">
+                            <p>La suppression de votre compte est permanente et irréversible. Toutes vos données personnelles seront supprimées.</p>
+                            <button id="deleteAccountBtn" class="btn btn-danger">Supprimer mon compte</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+          
+        </div>
+    </div>
+    
+    <!-- 2FA Setup Modal -->
+    <div id="setup2FAModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Configuration de l'authentification à deux facteurs</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="setup-steps">
+                    <div class="step">
+                        <h4>Étape 1: Installez une application d'authentification</h4>
+                        <p>Téléchargez et installez une application d'authentification comme Google Authenticator, Microsoft Authenticator ou Authy sur votre smartphone.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Étape 2: Scannez le code QR</h4>
+                        <div class="qr-container">
+                            <img src="assets/images/qr-placeholder.png" alt="Code QR" class="qr-code">
+                        </div>
+                        <p>Ou entrez cette clé manuellement: <strong>ABCD EFGH IJKL MNOP</strong></p>
+                    </div>
+                    <div class="step">
+                        <h4>Étape 3: Entrez le code de vérification</h4>
+                        <div class="form-group">
+                            <label for="verificationCode">Code de vérification</label>
+                            <input type="text" id="verificationCode" class="form-control" placeholder="000000" maxlength="6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close">Annuler</button>
+                <button type="button" id="confirm2FABtn" class="btn btn-primary">Confirmer</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Account Deletion Confirmation Modal -->
+    <div id="deleteAccountModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirmer la suppression du compte</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="warning-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Êtes-vous absolument sûr de vouloir supprimer votre compte ? Cette action est <strong>permanente et irréversible</strong>.</p>
+                </div>
+                <div class="form-group">
+                    <label for="deleteConfirmation">Pour confirmer, veuillez saisir "SUPPRIMER" ci-dessous:</label>
+                    <input type="text" id="deleteConfirmation" class="form-control" placeholder="SUPPRIMER">
+                </div>
+                <div class="form-group">
+                    <label for="deletePassword">Entrez votre mot de passe actuel:</label>
+                    <input type="password" id="deletePassword" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close">Annuler</button>
+                <button type="button" id="confirmDeleteBtn" class="btn btn-danger" disabled>Supprimer définitivement</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Personal info form submission
+            const personalInfoForm = document.getElementById('personalInfoForm');
+            if (personalInfoForm) {
+                personalInfoForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // In a real application, you would send this data to your backend
+                    // For demo purposes, we'll just show an alert
+                    alert('Informations personnelles mises à jour avec succès !');
+                });
+            }
+            
+            // Password strength meter
+            const newPasswordInput = document.getElementById('newPassword');
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            
+            if (newPasswordInput && strengthBar && strengthText) {
+                newPasswordInput.addEventListener('input', function() {
+                    const password = this.value;
+                    let strength = 0;
+                    
+                    // Calculate password strength
+                    if (password.length >= 8) strength += 25;
+                    if (password.match(/[a-z]+/)) strength += 25;
+                    if (password.match(/[A-Z]+/)) strength += 25;
+                    if (password.match(/[0-9]+/)) strength += 25;
+                    
+                    // Update strength bar
+                    strengthBar.style.width = strength + '%';
+                    
+                    // Update color based on strength
+                    if (strength < 25) {
+                        strengthBar.style.backgroundColor = '#dc3545';
+                        strengthText.textContent = 'Force: Très faible';
+                    } else if (strength < 50) {
+                        strengthBar.style.backgroundColor = '#ffc107';
+                        strengthText.textContent = 'Force: Faible';
+                    } else if (strength < 75) {
+                        strengthBar.style.backgroundColor = '#17a2b8';
+                        strengthText.textContent = 'Force: Moyenne';
+                    } else {
+                        strengthBar.style.backgroundColor = '#28a745';
+                        strengthText.textContent = 'Force: Forte';
+                    }
+                });
+            }
+            
+            // Password change form submission
+            const passwordChangeForm = document.getElementById('passwordChangeForm');
+            if (passwordChangeForm) {
+                passwordChangeForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const currentPassword = document.getElementById('currentPassword').value;
+                    const newPassword = document.getElementById('newPassword').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    
+                    // Validate passwords
+                    if (currentPassword === '') {
+                        alert('Veuillez entrer votre mot de passe actuel.');
+                        return;
+                    }
+                    
+                    if (newPassword === '') {
+                        alert('Veuillez entrer un nouveau mot de passe.');
+                        return;
+                    }
+                    
+                    if (newPassword !== confirmPassword) {
+                        alert('Les mots de passe ne correspondent pas.');
+                        return;
+                    }
+                    
+                    // In a real application, you would send this data to your backend
+                    // For demo purposes, we'll just show an alert
+                    alert('Mot de passe changé avec succès !');
+                    
+                    // Reset form
+                    this.reset();
+                    strengthBar.style.width = '0%';
+                    strengthText.textContent = 'Force: Faible';
+                });
+            }
+            
+            // 2FA setup
+            const enable2FABtn = document.getElementById('enable2FABtn');
+            const setup2FAModal = document.getElementById('setup2FAModal');
+            const confirm2FABtn = document.getElementById('confirm2FABtn');
+            
+            if (enable2FABtn && setup2FAModal) {
+                enable2FABtn.addEventListener('click', function() {
+                    setup2FAModal.style.display = 'block';
+                });
+                
+                // Close modal when clicking on close button
+                const closeButtons = setup2FAModal.querySelectorAll('.close');
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        setup2FAModal.style.display = 'none';
+                    });
+                });
+                
+                // Confirm 2FA setup
+                if (confirm2FABtn) {
+                    confirm2FABtn.addEventListener('click', function() {
+                        const verificationCode = document.getElementById('verificationCode').value;
+                        
+                        if (verificationCode === '') {
+                            alert('Veuillez entrer le code de vérification.');
+                            return;
+                        }
+                        
+                        // In a real application, you would verify the code with your backend
+                        // For demo purposes, we'll just accept any 6-digit code
+                        if (verificationCode.length === 6 && /^\d+$/.test(verificationCode)) {
+                            // Update 2FA status
+                            const twoFactorStatus = document.querySelector('.two-factor-status .status');
+                            twoFactorStatus.textContent = 'Activé';
+                            twoFactorStatus.className = 'status active';
+                            
+                            // Update button
+                            enable2FABtn.textContent = 'Désactiver l\'authentification à deux facteurs';
+                            enable2FABtn.className = 'btn btn-warning';
+                            
+                            // Close modal
+                            setup2FAModal.style.display = 'none';
+                            
+                            // Show success message
+                            alert('Authentification à deux facteurs activée avec succès !');
+                        } else {
+                            alert('Code de vérification invalide. Veuillez entrer un code à 6 chiffres.');
+                        }
+                    });
+                }
+            }
+            
+            // Account deletion
+            const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+            const deleteAccountModal = document.getElementById('deleteAccountModal');
+            const deleteConfirmation = document.getElementById('deleteConfirmation');
+            const deletePassword = document.getElementById('deletePassword');
+            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+            
+            if (deleteAccountBtn && deleteAccountModal) {
+                deleteAccountBtn.addEventListener('click', function() {
+                    deleteAccountModal.style.display = 'block';
+                });
+                
+                // Close modal when clicking on close button
+                const closeButtons = deleteAccountModal.querySelectorAll('.close');
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        deleteAccountModal.style.display = 'none';
+                        // Reset form
+                        deleteConfirmation.value = '';
+                        deletePassword.value = '';
+                        confirmDeleteBtn.disabled = true;
+                    });
+                });
+                
+                // Enable delete button only when confirmation text is correct
+                if (deleteConfirmation && confirmDeleteBtn) {
+                    deleteConfirmation.addEventListener('input', function() {
+                        confirmDeleteBtn.disabled = this.value !== 'SUPPRIMER' || deletePassword.value === '';
+                    });
+                    
+                    deletePassword.addEventListener('input', function() {
+                        confirmDeleteBtn.disabled = deleteConfirmation.value !== 'SUPPRIMER' || this.value === '';
+                    });
+                }
+                
+                // Confirm account deletion
+                if (confirmDeleteBtn) {
+                    confirmDeleteBtn.addEventListener('click', function() {
+                        // In a real application, you would send this request to your backend
+                        // For demo purposes, we'll just show an alert
+                        alert('Compte supprimé avec succès. Vous allez être redirigé vers la page de connexion.');
+                        
+                        // Close modal
+                        deleteAccountModal.style.display = 'none';
+                        
+                        // In a real application, you would redirect to the login page
+                        // For demo purposes, we'll just simulate a redirect
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 2000);
+                    });
+                }
+            }
+        });
+    </script>
+    
+    <style>
+        /* Additional styles specific to settings page */
+        .settings-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 20px;
+        }
+        
+        .form-container h3 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-container h3 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .password-strength {
+            margin-top: 10px;
+        }
+        
+        .strength-meter {
+            height: 5px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            width: 0;
+            border-radius: 5px;
+            transition: width 0.3s, background-color 0.3s;
+        }
+        
+        #strengthText {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+        }
+        
+        .two-factor-status {
+            margin-bottom: 20px;
+        }
+        
+        .danger-zone {
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        .account-deletion {
+            margin-top: 20px;
+        }
+        
+        .account-deletion p {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .warning-message {
+            display: flex;
+            align-items: flex-start;
+            background-color: rgba(220, 53, 69, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .warning-message i {
+            font-size: 2rem;
+            color: var(--danger-color);
+            margin-right: 15px;
+        }
+        
+        .setup-steps {
+            margin-bottom: 20px;
+        }
+        
+        .step {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+        }
+        
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</body>
+</html>

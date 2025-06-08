@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medcin Manager - Tableau de bord</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard-card {
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar verticale -->
+    <nav class="sidebar">
+    <a class="sidebar-brand" href="index.html">
+        <i class="fas fa-heartbeat"></i><span>Medcin Manager</span>
+    </a>
+    <ul>
+        <li>
+            <a class="active" href="index.html">
+                <i class="fas fa-chart-line"></i><span>Tableau de bord</span>
+            </a>
+        </li>
+        <li>
+            <a href="profile.html">
+                <i class="fas fa-user-circle"></i><span>Mon compte</span>
+            </a>
+        </li>
+        <li>
+            <a href="medical-files.html">
+                <i class="fas fa-folder-open"></i><span>Dossiers médicaux</span>
+            </a>
+        </li>
+        <li>
+            <a href="medications.html">
+                <i class="fas fa-pills"></i><span>Stock médicaments</span>
+            </a>
+        </li>
+    </ul>
+    <div class="logout">
+        <a href="#">
+            <i class="fas fa-sign-out-alt"></i><span>Déconnexion</span>
+        </a>
+    </div>
+</nav>
+
+    <!-- Contenu principal -->
+    <div class="main-content" style="min-height: 100vh;">
+    <div class="container py-5">
+                <div class="row mb-4">
+                    <div class="col">
+                        <h1 class="display-5 fw-bold">
+                            <i class="fas fa-chart-line me-2 text-primary"></i>Tableau de bord
+                        </h1>
+                        <p class="text-muted">Bienvenue dans votre espace de gestion médicale</p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Carte Gestion de compte -->
+                    <div class="col-lg-4">
+                        <div class="card shadow dashboard-card">
+                            <div class="card-body text-center p-5">
+                                <div class="card-icon text-primary">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <h3 class="card-title mb-3">Mon compte</h3>
+                                <p class="card-text text-muted mb-4">
+                                    Gérez vos informations personnelles, horaires de travail et préférences de notifications.
+                                </p>
+                                <a href="profile.html" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-cog me-2"></i>Gérer mon compte
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carte Dossiers médicaux -->
+                    <div class="col-lg-4">
+                        <div class="card shadow dashboard-card">
+                            <div class="card-body text-center p-5">
+                                <div class="card-icon text-success">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <h3 class="card-title mb-3">Dossiers médicaux</h3>
+                                <p class="card-text text-muted mb-4">
+                                    Consultez, créez et modifiez les dossiers médicaux de vos patients.
+                                </p>
+                                <a href="medical-files.html" class="btn btn-success btn-lg">
+                                    <i class="fas fa-clipboard-list me-2"></i>Gérer les dossiers
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carte Stock médicaments -->
+                    <div class="col-lg-4">
+                        <div class="card shadow dashboard-card">
+                            <div class="card-body text-center p-5">
+                                <div class="card-icon text-danger">
+                                    <i class="fas fa-pills"></i>
+                                </div>
+                                <h3 class="card-title mb-3">Stock médicaments</h3>
+                                <p class="card-text text-muted mb-4">
+                                    Suivez votre inventaire de médicaments et gérez vos stocks efficacement.
+                                </p>
+                                <a href="medications.html" class="btn btn-danger btn-lg">
+                                    <i class="fas fa-capsules me-2"></i>Gérer le stock
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Résumé statistique -->
+                <div class="row mt-5 g-4">
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="bg-primary text-white p-3 rounded me-3">
+                                    <i class="fas fa-calendar-check fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Consultations aujourd'hui</h6>
+                                    <h3 class="mb-0">12</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="bg-success text-white p-3 rounded me-3">
+                                    <i class="fas fa-file-medical fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Total dossiers</h6>
+                                    <h3 class="mb-0">247</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="bg-danger text-white p-3 rounded me-3">
+                                    <i class="fas fa-exclamation-triangle fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Médicaments en alerte</h6>
+                                    <h3 class="mb-0">5</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5" style="margin-left: 250px;" id="footer">
+        <div class="container text-center">
+            <p class="text-muted mb-0"> 2025 Medcin Manager - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+// Adapter dynamiquement le margin du footer selon la largeur de la sidebar (pour la responsivité)
+function adjustFooter() {
+    const sidebar = document.querySelector('.sidebar');
+    const footer = document.getElementById('footer');
+    if (!sidebar || !footer) return;
+    let sidebarWidth = sidebar.offsetWidth;
+    if (window.innerWidth <= 575) sidebarWidth = 0;
+    footer.style.marginLeft = sidebarWidth + 'px';
+}
+window.addEventListener('resize', adjustFooter);
+document.addEventListener('DOMContentLoaded', adjustFooter);
+</script>
+</body>
+</html>
